@@ -44,12 +44,10 @@ int MOAIChartBoostIOS::_init ( lua_State* L ) {
 	cc8* identifier = lua_tostring ( state, 1 );
 	cc8* signature = lua_tostring ( state, 2 );
 	
-	Chartboost *cb = [Chartboost sharedChartboost];
-    cb.appId = [ NSString stringWithUTF8String:identifier ];
-    cb.appSignature = [ NSString stringWithUTF8String:signature ];
-	
-	[cb setDelegate:MOAIChartBoostIOS::Get ().mDelegate ];
-	[cb startSession ];
+	[[ Chartboost sharedChartboost ] setAppId:[ NSString stringWithUTF8String:identifier ]];
+	[[ Chartboost sharedChartboost ] setAppSignature:[ NSString stringWithUTF8String:signature ]];
+	[[ Chartboost sharedChartboost ] setDelegate:MOAIChartBoostIOS::Get ().mDelegate ];
+	[[ Chartboost sharedChartboost ] startSession ];
 	
 	return 0;
 }
@@ -65,21 +63,16 @@ int MOAIChartBoostIOS::_loadInterstitial ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 
-	 cc8* location = state.GetValue < cc8* >( 1, "" );
-	 
-	 if ( location != nil ) {
-	 	
-         NSString* loc = [ NSString stringWithUTF8String:location ];
-         
-		NSLog(@"MOAIChartBoostIOS::_loadInterstitial with location %@", loc);
-		 
-	 	[[ Chartboost sharedChartboost ] cacheInterstitial:loc];
-	 } else {
-		
-		 NSLog(@"MOAIChartBoostIOS::_loadInterstitial without location");
-		 
+	// At the moment, to keep parity with Android, don't allow locations.
+	// cc8* location = lua_tostring ( state, 1 );
+	// 
+	// if ( location != nil ) {
+	// 	
+	// 	[[ ChartBoost sharedChartboost ] cacheInterstitial:[ NSString stringWithUTF8String:location ]];
+	// } else {
+	// 	
 		[[ Chartboost sharedChartboost ] cacheInterstitial ];
-	 }
+	// }
 			
 	return 0;
 }
@@ -110,33 +103,30 @@ int MOAIChartBoostIOS::_showInterstitial ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 
-	 cc8* location = state.GetValue < cc8* >( 1, "" );
-	 
-	 if ( location != nil ) {
-	 	
-         NSString* loc = [ NSString stringWithUTF8String:location ];
-         
-         NSLog(@"MOAIChartBoostIOS::_loadInterstitial with location %@", loc);
-		 
-	 	if ([[ Chartboost sharedChartboost ] hasCachedInterstitial:loc]) {
-	 		
-	 		[[ Chartboost sharedChartboost ] showInterstitial:loc];
-	 		lua_pushboolean ( state, true );
-	 		
-	 		return 1;
-	 	}
-	 } else {
+	// At the moment, to keep parity with Android, don't allow locations.
+	// cc8* location = lua_tostring ( state, 1 );
+	// 
+	// if ( location != nil ) {
+	// 	
+	// 	if ([[ ChartBoost sharedChartBoost ] hasCachedInterstitial:[ NSString stringWithUTF8String:location ]]) {
+	// 		
+	// 		[[ ChartBoost sharedChartBoost ] showInterstitial:[ NSString stringWithUTF8String:location ]];
+	// 		
+	// 		lua_pushboolean ( state, true );
+	// 		
+	// 		return 1;
+	// 	}
+	// } else {
 		
 		if ( [[ Chartboost sharedChartboost ] hasCachedInterstitial ]) {
 			
-			NSLog(@"MOAIChartBoostIOS::_showInterstitial without location");
-			
 			[[ Chartboost sharedChartboost ] showInterstitial ];
+
 			lua_pushboolean ( state, true );
 			
 			return 1;
 		}
-	}
+	// }
 			
 	lua_pushboolean ( state, false );
 

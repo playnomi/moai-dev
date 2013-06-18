@@ -1,10 +1,5 @@
-//
-//  MOAIHttpTaskNsUrl.h
-//  libmoai
-//
-//  Created by Megan Peterson on 7/28/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+// Copyright (c) 2010-2011 Zipline Games, Inc. All Rights Reserved.
+// http://getmoai.com
 
 #ifndef libmoai_MOAIHttpTaskNsUrl_h
 #define libmoai_MOAIHttpTaskNsUrl_h
@@ -36,9 +31,11 @@ private:
 	friend class MOAIUrlMgrNSURL;
 	
 	STLString			mUrl;
-	STLString			mOpt;
+	u32					mOpt;
 	u32					mDefaultTimeout;
 	NSURLConnection*	mEasyHandle;
+	float				mExpectedLength;
+	float				mDataReceived;
 	//curl_slist*		mHeaderList;
 	
 	MOAIHttpTaskNSURLDelegate* mUrlDelegate;
@@ -92,7 +89,7 @@ public:
 	void			SetCookieDst			( const char *file );
 	void			SetUrl					( cc8* url );
 	void			SetUserAgent			( cc8* useragent );
-	void			SetVerb					( u32 verb );
+	void			SetVerb					( int verb );
 	void			SetVerbose				( bool verbose );
 	
 	

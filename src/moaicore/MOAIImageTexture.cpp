@@ -52,8 +52,6 @@ void MOAIImageTexture::Invalidate () {
 
 //----------------------------------------------------------------//
 void MOAIImageTexture::Invalidate ( USIntRect rect ) {
-
-	//printf("Invalidate rect \n");
 	
 	if ( this->mStatus == INVALID ) return;
 
@@ -68,7 +66,6 @@ void MOAIImageTexture::Invalidate ( USIntRect rect ) {
 	}
 	this->mStatus = INVALID_REGION;
 	
-	//this->MOAIGfxResource::Invalidate ();
 	this->MOAIGfxResource::Load ();
 }
 

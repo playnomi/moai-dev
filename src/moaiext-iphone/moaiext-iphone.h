@@ -9,6 +9,7 @@
 #import <moaiext-iphone/MOAIFacebookIOS.h>
 #import <moaiext-iphone/MOAIGameCenterIOS.h>
 #import <moaiext-iphone/MOAIKeyboardIOS.h>
+#import <moaiext-iphone/MOAIMobileAppTrackerIOS.h>
 #import <moaiext-iphone/MOAIMoviePlayerIOS.h>
 #import <moaiext-iphone/MOAINotificationsIOS.h>
 #import <moaiext-iphone/MOAISafariIOS.h>
@@ -18,11 +19,8 @@
 #import <moaiext-iphone/MOAIWebViewDelegate.h>
 #import <moaiext-iphone/MOAIWebViewIOS.h>
 
-#import <moaiext-iphone/MOAIImagePickerIOS.h>
-#import <moaiext-iphone/MOAIHttpTaskNSURL.h>
-#import <moaiext-iphone/MOAIFlurryIOS.h>
-#import <moaiext-iphone/MOAIGrowMobileIOS.h>
-#import <moaiext-iphone/MOAIUrlMgrNSURL.h>
+#include <moaiext-iphone/MOAIHttpTaskNSURL.h>
+#include <moaiext-iphone/MOAIUrlMgrNSURL.h>
 
 #import <moaiext-iphone/NSArray+MOAILib.h>
 #import <moaiext-iphone/NSData+MOAILib.h>

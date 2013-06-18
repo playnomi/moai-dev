@@ -126,6 +126,11 @@ void MOAIPartitionResultBuffer::GenerateKeys ( u32 mode, float xScale, float ySc
 
 	switch ( mode & SORT_MODE_MASK ) {
 		
+		case SORT_KEY_ASCENDING:
+			for ( u32 i = 0; i < this->mTotalResults; ++i ) {
+				this->mMainBuffer [ i ].mKey = this->mMainBuffer [ i ].mKey * intSign;
+			}
+			break;
 		case SORT_PRIORITY_ASCENDING:
 			for ( u32 i = 0; i < this->mTotalResults; ++i ) {
 				s32 p = this->mMainBuffer [ i ].mPriority * intSign;
@@ -242,8 +247,6 @@ u32 MOAIPartitionResultBuffer::Sort ( u32 mode ) {
 
 //----------------------------------------------------------------//
 u32 MOAIPartitionResultBuffer::SortResultsIso () {
-
-	this->mTotalResults = this->mTotalResults;
 
 	IsoSortItem* sortBuffer = ( IsoSortItem* )alloca ( this->mTotalResults * sizeof ( IsoSortItem ));
 	
