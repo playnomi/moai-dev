@@ -30,7 +30,7 @@ function initFrameBuffer ()
 
 	local frameBuffer = MOAIFrameBufferTexture.new ()
 	frameBuffer:setRenderTable ({ layer })
-	frameBuffer:init ( 256, 256 )
+	--frameBuffer:init ( 256, 256 )
 	frameBuffer:setClearColor ( 1, 0, 0, 1 )
 	MOAIRenderMgr.setBufferTable ({ frameBuffer })
 	

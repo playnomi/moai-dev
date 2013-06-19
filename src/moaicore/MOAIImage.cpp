@@ -162,31 +162,6 @@ int MOAIImage::_copyRect ( lua_State* L ) {
 }
 
 //----------------------------------------------------------------//
-/**	@name	fillCircle
-	@text	Draw a filled circle.
-
-	@in		number x
-	@in		number y
-	@in		number r
-	@opt	number r			Default value is 0.
-	@opt	number g			Default value is 0.
-	@opt	number b			Default value is 0.
-	@opt	number a			Default value is 0.
-	@out	nil
-*/
-int MOAIImage::_fillCircle ( lua_State* L ) {
-	MOAI_LUA_SETUP ( MOAIImage, "UNNN" )
-	
-	float x0	= state.GetValue < float >( 2, 0.0f );
-	float y0	= state.GetValue < float >( 3, 0.0f );
-	float r		= state.GetValue < float >( 4, 0.0f );
-	u32 color	= state.GetColor32 ( 5, 0.0f, 0.0f, 0.0f, 0.0f );
-	
-	self->FillCircle ( x0, y0, r, color );
-	return 0;
-}
-
-//----------------------------------------------------------------//
 /**	@name	fillRect
 	@text	Fill a rectangle in the image with a solid color.
 
@@ -1950,7 +1925,6 @@ void MOAIImage::RegisterLuaFuncs ( MOAILuaState& state ) {
 		{ "copyRect",			_copyRect },
 		{ "fillCircle",			_fillCircle },
 		{ "fillRect",			_fillRect },
-		{ "fillCircle",			_fillCircle },
 		{ "getColor32",			_getColor32 },
 		{ "getFormat",			_getFormat },
 		{ "getRGBA",			_getRGBA },
