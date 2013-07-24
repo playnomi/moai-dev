@@ -1119,7 +1119,6 @@
 		034B8955164884AC00230182 /* MOAIUrlMgrNSURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B8951164884AC00230182 /* MOAIUrlMgrNSURL.h */; };
 		034B8956164884AC00230182 /* MOAIUrlMgrNSURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 034B8952164884AC00230182 /* MOAIUrlMgrNSURL.mm */; };
 		034B89C51649848000230182 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89C31649848000230182 /* Flurry.h */; };
-		034B89C61649848000230182 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B89C41649848000230182 /* libFlurry.a */; };
 		034B89D41649884A00230182 /* CBAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D01649884A00230182 /* CBAnalytics.h */; };
 		034B89D51649884A00230182 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D11649884A00230182 /* Chartboost.h */; };
 		034B89D61649884A00230182 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B89D21649884A00230182 /* libChartboost.a */; };
@@ -1129,6 +1128,11 @@
 		039C283E138EDAB300A3A780 /* MOAIDeckRemapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 039C283C138EDAB300A3A780 /* MOAIDeckRemapper.h */; };
 		039C283F138EDAB300A3A780 /* MOAIDeckRemapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039C283B138EDAB300A3A780 /* MOAIDeckRemapper.cpp */; };
 		039C2840138EDAB300A3A780 /* MOAIDeckRemapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 039C283C138EDAB300A3A780 /* MOAIDeckRemapper.h */; };
+		03A3B83317930DDB0074F7E1 /* MOAIBetableIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03A3B83117930DDB0074F7E1 /* MOAIBetableIOS.mm */; };
+		03A3B83417930DDB0074F7E1 /* MOAIBetableIOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A3B83217930DDB0074F7E1 /* MOAIBetableIOS.h */; };
+		03A3B83717930EA00074F7E1 /* AKU-betable.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A3B83517930EA00074F7E1 /* AKU-betable.h */; };
+		03A3B83817930EA00074F7E1 /* AKU-betable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 03A3B83617930EA00074F7E1 /* AKU-betable.mm */; };
+		03A3B83C179314FD0074F7E1 /* Betable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A3B83917930EF00074F7E1 /* Betable.framework */; };
 		03A7E88016645FB000778BC3 /* MOAISafariIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = CDF2C618151B146F0009D47D /* MOAISafariIOS.mm */; };
 		03A7E8811664606700778BC3 /* AKU-chartboost.mm in Sources */ = {isa = PBXBuildFile; fileRef = E98DBDD41537A33100514387 /* AKU-chartboost.mm */; };
 		03A7E8821664606F00778BC3 /* AKU-chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = E98DBDD31537A33100514387 /* AKU-chartboost.h */; };
@@ -4222,6 +4226,12 @@
 		0379C5961333ECD800E89DDC /* libmoai-ios-3rdparty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-ios-3rdparty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039C283B138EDAB300A3A780 /* MOAIDeckRemapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIDeckRemapper.cpp; sourceTree = "<group>"; };
 		039C283C138EDAB300A3A780 /* MOAIDeckRemapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIDeckRemapper.h; sourceTree = "<group>"; };
+		03A3B82617930D770074F7E1 /* libmoai-ios-betable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-ios-betable.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03A3B83117930DDB0074F7E1 /* MOAIBetableIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MOAIBetableIOS.mm; path = "moaiext-iphone/MOAIBetableIOS.mm"; sourceTree = "<group>"; };
+		03A3B83217930DDB0074F7E1 /* MOAIBetableIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOAIBetableIOS.h; path = "moaiext-iphone/MOAIBetableIOS.h"; sourceTree = "<group>"; };
+		03A3B83517930EA00074F7E1 /* AKU-betable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AKU-betable.h"; path = "aku/AKU-betable.h"; sourceTree = "<group>"; };
+		03A3B83617930EA00074F7E1 /* AKU-betable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "AKU-betable.mm"; path = "aku/AKU-betable.mm"; sourceTree = "<group>"; };
+		03A3B83917930EF00074F7E1 /* Betable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Betable.framework; path = "../../3rdparty/betable-ios-sdk-master/framework/Betable.framework"; sourceTree = "<group>"; };
 		03B2EC1213C503B400F8B3CF /* MOAIMotionSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIMotionSensor.cpp; sourceTree = "<group>"; };
 		03B2EC1313C503B400F8B3CF /* MOAIMotionSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIMotionSensor.h; sourceTree = "<group>"; };
 		03C2F6F4104DE130009A2D5D /* libmoai-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -6357,12 +6367,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03A3B81F17930D770074F7E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03C2F6F2104DE130009A2D5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				03C6EF8616D3289900736AB5 /* FacebookSDK.framework in Frameworks */,
-				034B89C61649848000230182 /* libFlurry.a in Frameworks */,
+				03A3B83C179314FD0074F7E1 /* Betable.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7277,6 +7294,7 @@
 				663BA372159D041D00F80FE9 /* libmoai-ios-vungle.a */,
 				0336147B16558E020037DBE0 /* libmoai-ios-smartfox.a */,
 				03DABB74166EDE1F00EAE827 /* libmoai-ios-mobclix.a */,
+				03A3B82617930D770074F7E1 /* libmoai-ios-betable.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -8201,6 +8219,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				03A3B83917930EF00074F7E1 /* Betable.framework */,
 				0323528F16C351960081106B /* DeprecatedHeaders */,
 				03DABB9E166EE0C200EAE827 /* SystemConfiguration.framework */,
 				03DABB9C166EE0BA00EAE827 /* QuartzCore.framework */,
@@ -9411,6 +9430,8 @@
 				E9CA1E01151AE80E005F39B7 /* MOAIAdColonyIOS.mm */,
 				CDF2C611151B146F0009D47D /* MOAIAppIOS.h */,
 				CDF2C612151B146F0009D47D /* MOAIAppIOS.mm */,
+				03A3B83217930DDB0074F7E1 /* MOAIBetableIOS.h */,
+				03A3B83117930DDB0074F7E1 /* MOAIBetableIOS.mm */,
 				CDF2C613151B146F0009D47D /* MOAIBillingIOS.h */,
 				CDF2C614151B146F0009D47D /* MOAIBillingIOS.mm */,
 				E98DBDC71537A2BF00514387 /* MOAIChartBoostIOS.h */,
@@ -10761,6 +10782,8 @@
 		CDF2C627151B14DD0009D47D /* aku */ = {
 			isa = PBXGroup;
 			children = (
+				03A3B83517930EA00074F7E1 /* AKU-betable.h */,
+				03A3B83617930EA00074F7E1 /* AKU-betable.mm */,
 				0336148116558E930037DBE0 /* AKU-smartfox.h */,
 				0336148216558E930037DBE0 /* AKU-smartfox.mm */,
 				03DABB76166EDEE900EAE827 /* AKU-mobclix.h */,
@@ -12012,6 +12035,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03A3B81917930D770074F7E1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A3B83417930DDB0074F7E1 /* MOAIBetableIOS.h in Headers */,
+				03A3B83717930EA00074F7E1 /* AKU-betable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03C2F6F0104DE130009A2D5D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -12779,6 +12811,23 @@
 			productReference = 0379C5961333ECD800E89DDC /* libmoai-ios-3rdparty.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		03A3B81817930D770074F7E1 /* libmoai-ios-betable */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03A3B82117930D770074F7E1 /* Build configuration list for PBXNativeTarget "libmoai-ios-betable" */;
+			buildPhases = (
+				03A3B81917930D770074F7E1 /* Headers */,
+				03A3B81C17930D770074F7E1 /* Sources */,
+				03A3B81F17930D770074F7E1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libmoai-ios-betable";
+			productName = OpenUSLS;
+			productReference = 03A3B82617930D770074F7E1 /* libmoai-ios-betable.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		03C2F6F3104DE130009A2D5D /* libmoai-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 03C2F6F8104DE131009A2D5D /* Build configuration list for PBXNativeTarget "libmoai-ios" */;
@@ -13165,6 +13214,7 @@
 				CDD06BD5139882D900AB0420 /* libmoai-osx-luaext */,
 				CD07C4B913A1918600C9386C /* libmoai-osx-untz */,
 				CD04ACB51472557F009C20E5 /* libmoai-osx-zlcore */,
+				03A3B81817930D770074F7E1 /* libmoai-ios-betable */,
 			);
 		};
 /* End PBXProject section */
@@ -14793,6 +14843,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03A3B81C17930D770074F7E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03A3B83317930DDB0074F7E1 /* MOAIBetableIOS.mm in Sources */,
+				03A3B83817930EA00074F7E1 /* AKU-betable.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		03C2F6F1104DE130009A2D5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -16046,6 +16105,174 @@
 			};
 			name = Release;
 		};
+		03A3B82217930D770074F7E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_LABEL = NO;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty/Chartboost\"",
+				);
+				PRODUCT_NAME = "moai-ios-betable";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv7 armv7s";
+				WARNING_CFLAGS = "-w";
+			};
+			name = Debug;
+		};
+		03A3B82317930D770074F7E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_LABEL = NO;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty/Chartboost\"",
+				);
+				PRODUCT_NAME = "moai-ios-betable";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv7 armv7s";
+				WARNING_CFLAGS = "-w";
+			};
+			name = Release;
+		};
+		03A3B82417930D770074F7E1 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_LABEL = NO;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty/Chartboost\"",
+				);
+				PRODUCT_NAME = "moai-ios-betable";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv7 armv7s";
+				WARNING_CFLAGS = "-w";
+			};
+			name = AdHoc;
+		};
+		03A3B82517930D770074F7E1 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
+				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_LABEL = NO;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../3rdparty/Chartboost\"",
+				);
+				PRODUCT_NAME = "moai-ios-betable";
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "i386 armv7 armv7s";
+				WARNING_CFLAGS = "-w";
+			};
+			name = Distribution;
+		};
 		03B080970F708135005CD8E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -16164,6 +16391,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_ARES,
@@ -16248,6 +16476,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -18224,6 +18453,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -18881,6 +19111,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\"$(SRCROOT)/../../3rdparty/betable-ios-sdk-master/framework\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -19377,6 +19608,17 @@
 				0379C5951333ECD800E89DDC /* Release */,
 				E9C405C7150D999200C7AB04 /* AdHoc */,
 				E90D02C114D5E12700DD75AA /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		03A3B82117930D770074F7E1 /* Build configuration list for PBXNativeTarget "libmoai-ios-betable" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03A3B82217930D770074F7E1 /* Debug */,
+				03A3B82317930D770074F7E1 /* Release */,
+				03A3B82417930D770074F7E1 /* AdHoc */,
+				03A3B82517930D770074F7E1 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

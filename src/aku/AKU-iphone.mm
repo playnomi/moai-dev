@@ -21,9 +21,18 @@ void AKUAppOpenFromURL ( NSURL* url ) {
 	
 	MOAIAppIOS::Get ().AppOpenedFromURL ( url );
 
+	if ([[url absoluteString] rangeOfString:@"betable"].location != NSNotFound) {
+		
+		MOAIBetableIOS::Get ().HandleOpenURL ( url );
+	}
+	else {
+	
+	
 	#ifndef DISABLE_FACEBOOK
 		MOAIFacebookIOS::Get ().HandleOpenURL ( url );
 	#endif
+		
+	}
 }
 
 //-----------------------------------------------------------------//
@@ -118,10 +127,13 @@ void AKUIphoneInit ( UIApplication* application ) {
 	#endif
 	  
 	//#ifndef DISABLE_FLURRY
-		REGISTER_LUA_CLASS( MOAIFlurryIOS )
+	REGISTER_LUA_CLASS( MOAIFlurryIOS )
 	//#endif
 
-        REGISTER_LUA_CLASS ( MOAIGrowMobileIOS )
+	REGISTER_LUA_CLASS ( MOAIGrowMobileIOS )
+	
+	
+	REGISTER_LUA_CLASS ( MOAIBetableIOS )
 	
 	// Device properties
 	MOAIEnvironment& environment = MOAIEnvironment::Get ();

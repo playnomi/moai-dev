@@ -80,7 +80,7 @@ void MOAIUrlMgrNSURL::Process (NSURLConnection* handle, const void* data, int si
 		
 	//	if ( msg && ( msg->msg == CURLMSG_DONE )) {
 			
-	USLog::Print("Process for handle %i\n", handle);
+	// USLog::Print("Process for handle %i\n", handle);
 	//		CURL* handle = msg->easy_handle;
 	//		if ( handleMap.contains ( handle )) {
 	MOAIHttpTaskNSURL* task = handleMap [ handle ];

@@ -278,7 +278,7 @@ void MOAIHttpTaskNSURL::PerformAsync () {
 	}
 
 	NSString *requestString = [NSString stringWithCString:mUrl encoding:NSUTF8StringEncoding];
-	//USLog::Print("PerformAsync URL %s\n", [requestString UTF8String]);
+	USLog::Print("PerformAsync URL %s\n", [requestString UTF8String]);
 	NSURL * myURL = [[NSURL alloc] initWithString:requestString];
 	NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL: myURL
 															 cachePolicy: NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -286,12 +286,12 @@ void MOAIHttpTaskNSURL::PerformAsync () {
 	
 	NSString *optString = [NSString stringWithCString:mOpt.c_str() encoding:NSUTF8StringEncoding];
 	
-	//USLog::Print ( "opt %s\n", mOpt.c_str());
+	USLog::Print ( "opt %s\n", mOpt.c_str());
 	[myRequest setHTTPMethod:optString];
 	
 	if (mBody.Size() > 0)
 	{
-		//USLog::Print ( "mBody.Size() %i\n", mBody.Size());
+		USLog::Print ( "mBody.Size() %i\n", mBody.Size());
 		
 		[myRequest setHTTPBody:[NSData dataWithBytes:mBody.Data() length:mBody.Size()]];
 		mBody.Clear();
@@ -310,7 +310,7 @@ void MOAIHttpTaskNSURL::PerformSync () {
 
 	
 	NSString *requestString = [NSString stringWithCString:mUrl encoding:NSUTF8StringEncoding];
-	//USLog::Print("PerformSync URL %s\n", [requestString UTF8String]);
+	USLog::Print("PerformSync URL %s\n", [requestString UTF8String]);
 	NSURL * myURL = [[NSURL alloc] initWithString:requestString];
 	NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL: myURL
 															 cachePolicy: NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -318,7 +318,7 @@ void MOAIHttpTaskNSURL::PerformSync () {
 	
 	NSString *optString = [NSString stringWithCString:mOpt.c_str() encoding:NSUTF8StringEncoding];
 	
-	//USLog::Print ( "opt %s\n", mOpt.c_str());
+	USLog::Print ( "opt %s\n", mOpt.c_str());
 	[myRequest setHTTPMethod:optString];
 	
 	if (mBody.Size() > 0)
@@ -485,10 +485,12 @@ void MOAIHttpTaskNSURL::SetVerb ( u32 verb ) {
 			
 		case HTTP_PUT:
 			//result = curl_easy_setopt ( this->mEasyHandle, CURLOPT_CUSTOMREQUEST, "PUT" );
+			mOpt = "PUT";
 			break;
 			
 		case HTTP_DELETE:
 			//result = curl_easy_setopt ( this->mEasyHandle, CURLOPT_CUSTOMREQUEST, "DELETE" );
+			mOpt = "DELETE";
 			break;
 	}
 	
@@ -571,7 +573,7 @@ void MOAIHttpTaskNSURL::SetVerbose ( bool verbose ) {
 
 		MOAIUrlMgrNSURL::Get ().Process(myConnection, myData.bytes, myData.length);
 		
-		USLog::Print ( "%s\n", "data received for nsurl");
+		//USLog::Print ( "%s\n", "data received for nsurl");
 	}
 
 
