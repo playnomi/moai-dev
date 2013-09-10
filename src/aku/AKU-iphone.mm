@@ -8,7 +8,7 @@
 #import <CoreTelephony/CTCarrier.h>
 
 #import <OpenUDID/MOAIOpenUDID.h>
-
+#import <AdSupport/ASIdentifierManager.h>
 
 //-----------------------------------------------------------------//
 void AKUAppDidStartSession ( bool resumed ) {
@@ -21,15 +21,30 @@ void AKUAppOpenFromURL ( NSURL* url ) {
 	
 	MOAIAppIOS::Get ().AppOpenedFromURL ( url );
 
+	if ([[url absoluteString] rangeOfString:@"betable"].location != NSNotFound) {
+		
+		MOAIBetableIOS::Get ().HandleOpenURL ( url );
+	}
+	else {
+	
+	
 	#ifndef DISABLE_FACEBOOK
 		MOAIFacebookIOS::Get ().HandleOpenURL ( url );
 	#endif
+		
+	}
 }
 
 //-----------------------------------------------------------------//
 void AKUAppWillEndSession () {
 
 	MOAIAppIOS::Get ().WillEndSession ();
+}
+
+//-----------------------------------------------------------------//
+void AKUAppMemoryWarning () {
+	
+	MOAIAppIOS::Get ().MemoryWarning ();
 }
 
 //-----------------------------------------------------------------//
@@ -83,11 +98,17 @@ void AKUIphoneInit ( UIApplication* application ) {
 	REGISTER_LUA_CLASS ( MOAIDialogIOS )
 	REGISTER_LUA_CLASS ( MOAIGameCenterIOS )
 	REGISTER_LUA_CLASS ( MOAIKeyboardIOS )
-	REGISTER_LUA_CLASS ( MOAIMobileAppTrackerIOS )
 	REGISTER_LUA_CLASS ( MOAIMoviePlayerIOS )
 	REGISTER_LUA_CLASS ( MOAISafariIOS )
 	REGISTER_LUA_CLASS ( MOAIWebViewIOS )
 	REGISTER_LUA_CLASS ( MOAITwitterIOS )
+    REGISTER_LUA_CLASS ( MOAIImagePickerIOS )
+    
+	//#if USE_NSURL
+	REGISTER_LUA_CLASS ( MOAIHttpTaskNSURL )
+	MOAIUrlMgrNSURL::Affirm ();
+	
+	//#endif
 	
 	#ifndef DISABLE_TAPJOY
 		REGISTER_LUA_CLASS ( MOAITapjoyIOS )
@@ -104,10 +125,16 @@ void AKUIphoneInit ( UIApplication* application ) {
 	#ifndef DISABLE_FACEBOOK
 		REGISTER_LUA_CLASS ( MOAIFacebookIOS )
 	#endif
-		
-	REGISTER_LUA_CLASS ( MOAIHttpTaskNSURL )
-	MOAIUrlMgrNSURL::Affirm ();
-		
+	  
+	//#ifndef DISABLE_FLURRY
+	REGISTER_LUA_CLASS( MOAIFlurryIOS )
+	//#endif
+
+	REGISTER_LUA_CLASS ( MOAIGrowMobileIOS )
+	
+	
+	REGISTER_LUA_CLASS ( MOAIBetableIOS )
+	
 	// Device properties
 	MOAIEnvironment& environment = MOAIEnvironment::Get ();
 	
@@ -124,16 +151,29 @@ void AKUIphoneInit ( UIApplication* application ) {
 	//environment.SetValue ( MOAI_ENV_devPlatform,		[[ UIDevice currentDevice ].platform UTF8String ]);
 	environment.SetValue ( MOAI_ENV_documentDirectory,	[[ NSSearchPathForDirectoriesInDomains ( NSDocumentDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ] UTF8String ]);
 	environment.SetValue ( MOAI_ENV_iosRetinaDisplay,	[[ UIScreen mainScreen ] scale ] == 2.0 );
-
-	environment.SetValue ( MOAI_ENV_documentDirectory,	[[ NSSearchPathForDirectoriesInDomains ( NSDocumentDirectory, NSUserDomainMask, YES ) objectAtIndex:0 ] UTF8String ]);
-	environment.SetValue ( MOAI_ENV_iosRetinaDisplay,	[[ UIScreen mainScreen ] scale ] == 2.0 );	
 	environment.SetValue ( MOAI_ENV_languageCode,		[[[ NSLocale currentLocale ] objectForKey: NSLocaleLanguageCode ] UTF8String ]);
 	environment.SetValue ( MOAI_ENV_osBrand,			"iOS" );
 	environment.SetValue ( MOAI_ENV_osVersion,			[[ UIDevice currentDevice ].systemVersion UTF8String ]);
 	environment.SetValue ( MOAI_ENV_resourceDirectory,	[[[ NSBundle mainBundle ] resourcePath ] UTF8String ]);
 	environment.SetValue ( MOAI_ENV_openUdid,			[[ MOAIOpenUDID value] UTF8String ]);
-	environment.SetValue ( MOAI_ENV_horizontalResolution, [[ UIScreen mainScreen ] bounds ].size.width * [[ UIScreen mainScreen ] scale ] );  
+	environment.SetValue ( MOAI_ENV_horizontalResolution, [[ UIScreen mainScreen ] bounds ].size.width * [[ UIScreen mainScreen ] scale ] );
 	environment.SetValue ( MOAI_ENV_verticalResolution, [[ UIScreen mainScreen ] bounds ].size.height * [[ UIScreen mainScreen ] scale ] );
+	
+
+	if (NSClassFromString(@"ASIdentifierManager")) {
+		NSString* adId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+		environment.SetValue ( MOAI_ENV_advertisingIdentifier, [adId UTF8String]);
+		
+		// check for this later
+		//advertisingTrackingEnabled
+
+		NSString *vendorIdObject = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+		environment.SetValue ( MOAI_ENV_vendorIdentifier, [vendorIdObject UTF8String]);
+		
+	} 
+	
+
+	
 }
 
 //----------------------------------------------------------------//
@@ -178,8 +218,8 @@ void AKUSetConnectionType ( long type ) {
 	}
 }
 
-
 //-----------------------------------------------------------------//
-void AKUSetFrameBuffer ( GLuint frameBuffer ) {
-	MOAIGfxDevice::Get ().GetDefaultBuffer ()->SetGLFrameBufferID (frameBuffer);
+void AKUSetDefaultFrameBuffer ( GLuint frameBuffer ) {
+
+	MOAIGfxDevice::Get ().SetDefaultFrameBuffer ( frameBuffer );
 }
