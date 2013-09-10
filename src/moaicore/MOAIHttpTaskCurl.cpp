@@ -151,6 +151,11 @@ void MOAIHttpTaskCurl::AffirmHandle () {
 	
 	result = curl_easy_setopt ( this->mEasyHandle, CURLOPT_SSL_VERIFYHOST, 2 );
 	PrintError ( result );
+
+#ifdef USE_ARES
+	result = curl_easy_setopt ( this->mEasyHandle, CURLOPT_NOSIGNAL, 1 );
+	PrintError ( result );
+#endif
 }
 
 //----------------------------------------------------------------//
@@ -368,7 +373,7 @@ void MOAIHttpTaskCurl::SetUserAgent ( cc8* useragent ) {
 }
 
 //----------------------------------------------------------------//
-void MOAIHttpTaskCurl::SetVerb ( u32 verb ) {
+void MOAIHttpTaskCurl::SetVerb ( int verb ) {
 
 	CURLcode result = CURLE_OK;
 	

@@ -1,10 +1,5 @@
-//
-//  MOAIUrlMgrNSURL.h
-//  libmoai
-//
-//  Created by Megan Sullivan on 7/31/12.
-//
-//
+// Copyright (c) 2010-2011 Zipline Games, Inc. All Rights Reserved.
+// http://getmoai.com
 
 #ifndef libmoai_MOAIUrlMgrNSURL_h
 #define libmoai_MOAIUrlMgrNSURL_h
@@ -36,7 +31,7 @@ public:
 	MOAIUrlMgrNSURL			();
 	~MOAIUrlMgrNSURL			();
 	void			Process					(NSURLConnection* handle, const void* data, int size);
-	void			ProcessResponse (NSURLConnection* handle, int responseCode) ;
+	void			ProcessResponse (NSURLConnection* handle, int responseCode, NSDictionary* headers, int expectedLength ) ;
 	void			ConnectionDidFinishLoading (NSURLConnection* handle);
 
 };

@@ -9,10 +9,72 @@
 #import <moaiext-iphone/NSDictionary+MOAILib.h>
 #import <moaiext-iphone/NSError+MOAILib.h>
 #import <moaiext-iphone/NSString+MOAILib.h>
+#import <moaiext-iphone/MOAITakeCameraListener.h>
+
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 //================================================================//
 // lua
 //================================================================//
+
+/** @name _takeCamera
+	@text Allows to pick a photo from the CameraRoll or from the Camera
+	@in function	callback
+	@in NSUInteger	input camera source
+	@in int			if device is an ipad x coordinate of Popover
+	@in int			if device is an ipad y coordinate of Popover
+	@in int			if device is an ipad width coordinate of Popover
+	@in int			if device is an ipad height coordinate of Popover
+
+ */
+ 
+int MOAIAppIOS::_takeCamera( lua_State* L ) {
+	
+	int x, y, width, height = 0;
+	NSUInteger sourceType;
+	
+	MOAILuaState state ( L );
+	if ( state.IsType ( 1, LUA_TFUNCTION )) {
+		MOAIAppIOS::Get ().mOnTakeCameraCallback.SetStrongRef ( state, 1 );
+	}
+	
+	sourceType = state.GetValue < NSUInteger >( 2, 0 );
+	x = state.GetValue < int >( 3, 0 );
+	y = state.GetValue < int >( 4, 0 );
+	width = state.GetValue < int >( 5, 0 );
+	height = state.GetValue < int >( 6, 0 );
+	
+	UIImagePickerController *ipc = [[UIImagePickerController alloc]
+									init]; 
+	UIWindow* window = [[ UIApplication sharedApplication ] keyWindow ];
+	UIViewController* rootVC = [ window rootViewController ];
+
+	ipc.delegate = MOAIAppIOS::Get ().mTakeCameraListener;
+	ipc.sourceType = sourceType;
+	
+	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+		MOAIAppIOS::Get().mImagePickerPopover = [[UIPopoverController alloc] 
+												   initWithContentViewController: ipc];
+		[MOAIAppIOS::Get ().mTakeCameraListener setPopover:MOAIAppIOS::Get().mImagePickerPopover];
+		MOAIAppIOS::Get().mImagePickerPopover.delegate = MOAIAppIOS::Get ().mTakeCameraListener;
+		CGRect rect = CGRectMake(x,y,10,10);
+		[MOAIAppIOS::Get().mImagePickerPopover presentPopoverFromRect:rect inView:[rootVC view] 
+						  permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
+	} else {
+		[rootVC presentModalViewController:ipc animated:YES];
+	}
+	
+	return 0;
+}
+
+void MOAIAppIOS::callTakeCameraLuaCallback (NSString *imagePath) {
+	MOAILuaRef& callback = MOAIAppIOS::Get ().mOnTakeCameraCallback;
+	MOAILuaStateHandle state = callback.GetSelf ();
+	state.Push ([imagePath UTF8String]);
+	state.DebugCall ( 1, 0 );
+}
 
 //----------------------------------------------------------------//
 /**	@name	getDirectoryInDomain
@@ -124,6 +186,54 @@ int MOAIAppIOS::_setListener ( lua_State* L ) {
 	return 0;
 }
 
+int MOAIAppIOS::_getIPAddress ( lua_State* L ) {
+
+	MOAILuaState state ( L );
+	
+	struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    NSString *wifiAddress = nil;
+    NSString *cellAddress = nil;
+	
+    // retrieve the current interfaces - returns 0 on success
+    if( !getifaddrs ( &interfaces )) {
+		
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+		
+        while ( temp_addr != NULL ) {
+			
+            sa_family_t sa_type = temp_addr->ifa_addr->sa_family;
+			
+            if ( sa_type == AF_INET || sa_type == AF_INET6 ) {
+				
+                NSString *name = [ NSString stringWithUTF8String:temp_addr->ifa_name ];
+                NSString *addr = [ NSString stringWithUTF8String:inet_ntoa ((( struct sockaddr_in * )temp_addr->ifa_addr )->sin_addr )]; // pdp_ip0
+				
+                if([ name isEqualToString:@"en0" ]) {
+					
+                    // Interface is the wifi connection on the iPhone
+                    wifiAddress = addr;
+					
+                } else if([ name isEqualToString:@"pdp_ip0" ]) {
+					
+					// Interface is the cell connection on the iPhone
+					cellAddress = addr;
+				}
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+        // Free memory
+        freeifaddrs(interfaces);
+    }
+    NSString *addr = wifiAddress ? wifiAddress : cellAddress;
+	addr = addr ? addr : @"0.0.0.0";
+	
+	lua_pushstring ( L, [ addr UTF8String ]);
+	
+	return 1;
+}
+
 //================================================================//
 // MOAIAppIOS
 //================================================================//
@@ -137,12 +247,14 @@ MOAIAppIOS::MOAIAppIOS () {
 	[ this->mReachabilityListener startListener ];	
 	
 	mMailDelegate = [ MoaiMailComposeDelegate alloc ];
+	this->mTakeCameraListener = [MOAITakeCameraListener alloc];
 }
 
 //----------------------------------------------------------------//
 MOAIAppIOS::~MOAIAppIOS () {
 
 	[ mMailDelegate release ];
+	[ this->mTakeCameraListener release];
 }
 
 //----------------------------------------------------------------//
@@ -160,9 +272,11 @@ void MOAIAppIOS::RegisterLuaClass ( MOAILuaState& state ) {
 	
 	luaL_Reg regTable [] = {
 		{ "getDirectoryInDomain",	_getDirectoryInDomain },
+		{ "getIPAddress",			_getIPAddress },
 		{ "getUTCTime",				_getUTCTime },
 		{ "sendMail",				_sendMail },
 		{ "setListener",			_setListener },
+		{ "takeCamera",             _takeCamera },
 		{ NULL, NULL }
 	};
 
@@ -248,4 +362,5 @@ void MOAIAppIOS::MemoryWarning ( ) {
 		[ rootVC dismissModalViewControllerAnimated:YES ];
 	}
 }
+
 @end

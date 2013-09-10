@@ -149,7 +149,7 @@ int MOAIMobclixIOS::_hideAds ( lua_State* L ) {
 
 		CGRect screenRect = [[ UIScreen mainScreen ] bounds ];
 		CGFloat scale = [[ UIScreen mainScreen ] scale ];
-		CGFloat screenWidth = screenRect.size.width * scale;
+		//CGFloat screenWidth = screenRect.size.width * scale;
 		CGFloat screenHeight = screenRect.size.height * scale;
 		
 		CGRect adBannerViewFrame = [MOAIMobclixIOS::Get ().mAdView frame];
