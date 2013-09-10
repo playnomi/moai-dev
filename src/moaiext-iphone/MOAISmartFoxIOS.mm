@@ -64,7 +64,14 @@ int MOAISmartFoxIOS::_isConnected( lua_State* L)
 {
 	MOAILuaState state ( L );
 	
-	BOOL result = MOAISmartFoxIOS::Get().mSmartFox.isConnected ;
+	BOOL result = false;
+	
+	if (MOAISmartFoxIOS::Get().mSmartFox) {
+	
+		result = MOAISmartFoxIOS::Get().mSmartFox.isConnected;
+		
+	}
+		
 	lua_pushboolean ( state, result );
 	
 	return 1;
@@ -94,12 +101,15 @@ int MOAISmartFoxIOS::_login( lua_State* L )
 	NSString* loginName = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 1, "" ) ];
 	NSString* password	= [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 2, "" ) ];
 	NSString* zone		= [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 3, "" ) ];
-	NSString*  gameType = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 4, nil ) ];
+	NSString* gameType  = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 4, nil ) ];
 	
 	SFSObject* obj		= [SFSObject newInstance];	
-	
+
 	if (gameType != nil) {
-		[obj putUtfString:@"gameType" value:gameType];
+
+		NSLog(@"login with app_id %@", gameType);
+		
+		[obj putUtfString:@"app_id" value:gameType];
 	}
 	else{
 		obj = nil;

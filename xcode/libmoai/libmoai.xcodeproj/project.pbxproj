@@ -1119,10 +1119,8 @@
 		034B8955164884AC00230182 /* MOAIUrlMgrNSURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B8951164884AC00230182 /* MOAIUrlMgrNSURL.h */; };
 		034B8956164884AC00230182 /* MOAIUrlMgrNSURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 034B8952164884AC00230182 /* MOAIUrlMgrNSURL.mm */; };
 		034B89C51649848000230182 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89C31649848000230182 /* Flurry.h */; };
-		034B89C61649848000230182 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B89C41649848000230182 /* libFlurry.a */; };
 		034B89D41649884A00230182 /* CBAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D01649884A00230182 /* CBAnalytics.h */; };
 		034B89D51649884A00230182 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D11649884A00230182 /* Chartboost.h */; };
-		034B89D61649884A00230182 /* libChartboost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 034B89D21649884A00230182 /* libChartboost.a */; };
 		0392971613BE44010077B742 /* MOAIParticleDistanceEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E885BB13BE3E78008D75AA /* MOAIParticleDistanceEmitter.cpp */; };
 		0392971713BE44010077B742 /* MOAIParticleTimedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E885BD13BE3E78008D75AA /* MOAIParticleTimedEmitter.cpp */; };
 		039C283D138EDAB300A3A780 /* MOAIDeckRemapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 039C283B138EDAB300A3A780 /* MOAIDeckRemapper.cpp */; };
@@ -6362,7 +6360,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				03C6EF8616D3289900736AB5 /* FacebookSDK.framework in Frameworks */,
-				034B89C61649848000230182 /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6487,7 +6484,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				034B89D61649884A00230182 /* libChartboost.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

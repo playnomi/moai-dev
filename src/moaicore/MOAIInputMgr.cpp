@@ -245,7 +245,9 @@ void MOAIInputMgr::Update () {
 		this->mInput.Read < u8 >( 0 );
 		
 		MOAISensor* sensor = this->GetSensor ( deviceID, sensorID );
-		sensor->HandleEvent ( this->mInput );
+        if (sensor) {
+            sensor->HandleEvent ( this->mInput );
+        }
 	}
 	this->mInput.Seek ( 0, SEEK_SET );
 }
