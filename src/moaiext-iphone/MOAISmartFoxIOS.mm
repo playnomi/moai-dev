@@ -51,12 +51,24 @@ int MOAISmartFoxIOS::_initWithSocket( lua_State* L )
     
 }
 
+int MOAISmartFoxIOS::_disconnect( lua_State* L )
+{
+	[MOAISmartFoxIOS::Get ().mSmartFox disconnect];
+	
+	[MOAISmartFoxIOS::Get ().mSmartFox release];
+	MOAISmartFoxIOS::Get ().mSmartFox = NULL;
+
+}
+	
 int MOAISmartFoxIOS::_connect( lua_State* L )
 {
-	MOAILuaState state ( L );	
-    NSString* ip    = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 1, "dev.playnomi.net" ) ];
-    int   port      = state.GetValue < int >( 2, 9933 );
+	MOAILuaState state ( L );
+    bool   debug    = state.GetValue < bool >( 1, true );
+    NSString* ip    = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 2, "dev.playnomi.net" ) ];
+    int   port      = state.GetValue < int >( 3, 9933 );
     
+	MOAISmartFoxIOS::Get ().mSmartFox = [[SmartFox2XClient alloc] initSmartFoxWithDebugMode:debug delegate:MOAISmartFoxIOS::Get ().mSmartFoxDelgate];
+		
 	[MOAISmartFoxIOS::Get ().mSmartFox connect:ip port:port ];
 }
 
@@ -593,6 +605,7 @@ void MOAISmartFoxIOS::RegisterLuaClass ( MOAILuaState& state ) {
 		{ "login",					_login },
 		{ "sendLogoutRequest",       _sendLogoutRequest },
 		{ "connect",				_connect },
+		{ "disconnect",				_disconnect},
 		{ "isConnected",			_isConnected },
 		{ "sendPublicMessageRequest",		_sendPublicMessageRequest},
 		{ "sendJoinRoomRequest",	_sendJoinRoomRequest},		

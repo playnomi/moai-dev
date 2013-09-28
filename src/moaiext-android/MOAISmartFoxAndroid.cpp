@@ -73,7 +73,6 @@ int MOAISmartFoxAndroid::_initWithSocket ( lua_State* L ) {
 	int port = state.GetValue < int >( 3, 9933 );
         
 	JNI_GET_ENV ( jvm, env );
-	
 	JNI_GET_JSTRING ( ip, jip);
 	
 	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiSmartFox" );
@@ -97,12 +96,45 @@ int MOAISmartFoxAndroid::_initWithSocket ( lua_State* L ) {
 
 
 
+
+
+int MOAISmartFoxAndroid::_disconnect ( lua_State* L ) {
+    
+	MOAILuaState state ( L );
+ 
+	JNI_GET_ENV ( jvm, env );    
+    
+	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiSmartFox" );
+    if ( javaClass == NULL ) {
+        
+		USLog::Print ( "MOAISmartFoxAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiSmartFox" );
+    } else {
+        
+    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "disconnect", "()V" );
+    	if ( javaMethod == NULL ) {
+            
+			USLog::Print ( "MOAISmartFoxAndroid: Unable to find static java method %s", "disconnect" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( javaClass, javaMethod );
+		}
+	}
+    
+	return 0;
+    
+}
+
+
+
+
+
 int MOAISmartFoxAndroid::_connect ( lua_State* L ) {
    
 	MOAILuaState state ( L );
  
-    cc8* ip = lua_tostring ( state, 1 );
-	int port = state.GetValue < int >( 2, 9933 );
+    bool debug = lua_toboolean( state, 1 );
+    cc8* ip = lua_tostring ( state, 2 );
+	int port = state.GetValue < int >( 3, 9933 );
     
 	JNI_GET_ENV ( jvm, env );
 	JNI_GET_JSTRING ( ip, jip);	
@@ -114,13 +146,13 @@ int MOAISmartFoxAndroid::_connect ( lua_State* L ) {
 		USLog::Print ( "MOAISmartFoxAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiSmartFox" );
     } else {
         
-    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "connect", "(Ljava/lang/String;I)V" );
+    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "connect", "(ZLjava/lang/String;I)V" );
     	if ( javaMethod == NULL ) {
             
 			USLog::Print ( "MOAISmartFoxAndroid: Unable to find static java method %s", "connect" );
     	} else {
             
-			env->CallStaticVoidMethod ( javaClass, javaMethod, jip, port );
+			env->CallStaticVoidMethod ( javaClass, javaMethod, debug, jip, port );
 		}
 	}
     

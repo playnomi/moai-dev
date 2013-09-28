@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 
 #import <moaiext-iphone/MOAITapjoyIOS.h>
-#import <TapjoyConnect.h>
+#import <Tapjoy/Tapjoy.h>
 
 //================================================================//
 // lua
@@ -22,7 +22,7 @@
  */
 int MOAITapjoyIOS::_getUserId ( lua_State *L ) {
 	
-	lua_pushstring ( L, [[TapjoyConnect getUserID] UTF8String ] );
+	lua_pushstring ( L, [[Tapjoy getUserID] UTF8String ] );
 	
 	return 1;
 }
@@ -38,13 +38,13 @@ int MOAITapjoyIOS::_initVideoAds ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 
-	[ TapjoyConnect initVideoAdWithDelegate:MOAITapjoyIOS::Get ().mVideoAdDelegate ];
+	[ Tapjoy setVideoAdDelegate:MOAITapjoyIOS::Get ().mVideoAdDelegate ];
 	
 	u32 cacheCount = state.GetValue < u32 >( 1, 0 );
 	if ( cacheCount > 0 ) {
 		
 		printf ( "setting cache to: %d\n", cacheCount );
-		[ TapjoyConnect setVideoCacheCount:cacheCount ];
+		[ Tapjoy setVideoCacheCount:cacheCount ];
 	}
 	
 	return 0;
@@ -68,7 +68,7 @@ int MOAITapjoyIOS::_init ( lua_State* L ) {
 	NSString* ID = [[ NSString alloc ] initWithUTF8String:appId ];
 	NSString* key = [[ NSString alloc ] initWithUTF8String:secretKey ];
 
-	[ TapjoyConnect requestTapjoyConnect:ID secretKey:key ];
+	[ Tapjoy requestTapjoyConnect:ID secretKey:key ];
 
 	[ ID release ];
 	[ key release ];
@@ -89,7 +89,7 @@ int MOAITapjoyIOS::_setUserId ( lua_State *L ) {
 	cc8* uid = state.GetValue < cc8* >( 1, "" );
 	
 	NSString* ID = [[ NSString alloc ] initWithUTF8String:uid ];
-	[ TapjoyConnect setUserID:ID ];
+	[ Tapjoy setUserID:ID ];
 	[ ID release ];
 	return 0;
 }
@@ -108,7 +108,7 @@ int MOAITapjoyIOS::_actionComplete( lua_State *L ) {
 	
 	NSString* ID = [[ NSString alloc ] initWithUTF8String:actionId ];
     
-    [TapjoyConnect actionComplete:ID];
+    [Tapjoy actionComplete:ID];
     
 	return 0;
 }
@@ -130,7 +130,7 @@ int MOAITapjoyIOS::_showOffers ( lua_State* L ) {
 	UIViewController* rootVC = [ window rootViewController ];
 	if ( rootVC ) {
 	
-		[ TapjoyConnect showOffersWithViewController:rootVC ];
+		[ Tapjoy showOffersWithViewController:rootVC ];
 	}
 		
 	return 0;

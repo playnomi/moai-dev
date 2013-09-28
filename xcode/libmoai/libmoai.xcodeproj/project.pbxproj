@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031A560E17E51B80004C5DB5 /* Tapjoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A560D17E51B80004C5DB5 /* Tapjoy.framework */; };
 		031BBA5C13B17BD80005ECE0 /* MOAIEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 031BBA5A13B17BD80005ECE0 /* MOAIEnvironment.cpp */; };
 		031BBA5D13B17BD80005ECE0 /* MOAIEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 031BBA5B13B17BD80005ECE0 /* MOAIEnvironment.h */; };
 		031BBA5E13B17BD80005ECE0 /* MOAIEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 031BBA5A13B17BD80005ECE0 /* MOAIEnvironment.cpp */; };
@@ -3661,6 +3662,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031A560D17E51B80004C5DB5 /* Tapjoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tapjoy.framework; path = ../../3rdparty/Tapjoy.embeddedframework/Tapjoy.framework; sourceTree = "<group>"; };
 		031BBA5A13B17BD80005ECE0 /* MOAIEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIEnvironment.cpp; sourceTree = "<group>"; };
 		031BBA5B13B17BD80005ECE0 /* MOAIEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIEnvironment.h; sourceTree = "<group>"; };
 		031FA4CB138589C4007FD20C /* MOAICameraAnchor2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAICameraAnchor2D.cpp; sourceTree = "<group>"; };
@@ -6359,6 +6361,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031A560E17E51B80004C5DB5 /* Tapjoy.framework in Frameworks */,
 				03C6EF8616D3289900736AB5 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -9259,6 +9262,7 @@
 		CD2FDE8613542E9F00B814DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				031A560D17E51B80004C5DB5 /* Tapjoy.framework */,
 				CD2FDEDB13542F3600B814DF /* libiconv.dylib */,
 				CD2FDEBB13542F1400B814DF /* AddressBook.framework */,
 				CD2FDEBC13542F1400B814DF /* AddressBookUI.framework */,
@@ -16159,7 +16163,8 @@
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\\\"$(SRCROOT)/../../3rdparty/FacebookSDK\\\"",
+					"/Users/stephensullivan/moai-dev2/3rdparty/Tapjoy.embeddedframework",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_ARES,
@@ -16243,7 +16248,8 @@
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\\\"$(SRCROOT)/../../3rdparty/FacebookSDK\\\"",
+					"/Users/stephensullivan/moai-dev2/3rdparty/Tapjoy.embeddedframework",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -18219,7 +18225,8 @@
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\\\"$(SRCROOT)/../../3rdparty/FacebookSDK\\\"",
+					"/Users/stephensullivan/moai-dev2/3rdparty/Tapjoy.embeddedframework",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -18876,7 +18883,8 @@
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../3rdparty/FacebookSDK\"",
+					"\\\"$(SRCROOT)/../../3rdparty/FacebookSDK\\\"",
+					"/Users/stephensullivan/moai-dev2/3rdparty/Tapjoy.embeddedframework",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,

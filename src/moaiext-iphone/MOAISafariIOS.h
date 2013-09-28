@@ -19,7 +19,8 @@ class MOAISafariIOS :
 private:
 
 	//----------------------------------------------------------------//
-	static int	_openURL			( lua_State* L );
+		static int	_canOpenURL			( lua_State* L );
+		static int	_openURL			( lua_State* L );
 	static int	_openURLWithParams	( lua_State* L );
 
 public:

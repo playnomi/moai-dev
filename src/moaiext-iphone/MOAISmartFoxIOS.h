@@ -34,6 +34,7 @@ private:
 	static int	_init					( lua_State* L );
 	static int	_initWithSocket		   ( lua_State* L );
 	static int	_connect				( lua_State* L );
+	static int	_disconnect				( lua_State* L );
 	static int	_isConnected			( lua_State* L );
 	static int	_login					( lua_State* L );
 	static int	_sendLogoutRequest	    ( lua_State* L );
