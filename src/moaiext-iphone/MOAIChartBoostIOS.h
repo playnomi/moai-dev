@@ -29,6 +29,10 @@ private:
 	static int	_loadInterstitial		( lua_State* L );
 	static int	_setListener			( lua_State* L );
 	static int	_showInterstitial		( lua_State* L );
+		
+		
+	static int	_cacheMoreApps			( lua_State* L );
+	static int	_showMoreApps			( lua_State* L );
 	
 public:
 

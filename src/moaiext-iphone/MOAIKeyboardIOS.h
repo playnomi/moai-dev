@@ -8,6 +8,8 @@
 #import <UIKit/UIKit.h>
 #import <moaicore/moaicore.h>
 
+@class MOAITextFieldDelegate;
+
 //================================================================//
 // MOAIKeyboardIOS
 //================================================================//
@@ -108,6 +110,7 @@ private:
 	};
 
 	UITextField*	mTextField;
+	MOAITextFieldDelegate* delegate;
 
 	//----------------------------------------------------------------//
 	static int		_getText				( lua_State* L );

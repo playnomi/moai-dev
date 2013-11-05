@@ -99,6 +99,20 @@ int MOAIChartBoostIOS::_setListener ( lua_State* L ) {
 	return 0;
 }
 
+
+int MOAIChartBoostIOS::_cacheMoreApps ( lua_State* L ) {
+	
+	[[Chartboost sharedChartboost] cacheMoreApps];
+	
+}
+
+int MOAIChartBoostIOS::_showMoreApps ( lua_State* L ) {
+	
+	[[Chartboost sharedChartboost] showMoreApps];
+	
+}
+
+
 //----------------------------------------------------------------//
 /**	@name	showInterstitial
 	@text	Request an interstitial ad display if a cached ad is available.
@@ -173,6 +187,9 @@ void MOAIChartBoostIOS::RegisterLuaClass ( MOAILuaState& state ) {
 		{ "loadInterstitial",		_loadInterstitial },
 		{ "setListener",			_setListener },
 		{ "showInterstitial",		_showInterstitial },
+		{ "cacheMoreApps",		_cacheMoreApps },
+		{ "showMoreApps",		_showMoreApps },
+		
 		{ NULL, NULL }
 	};
 
@@ -236,9 +253,13 @@ void MOAIChartBoostIOS::NotifyInterstitialLoadFailed () {
 
 	- ( BOOL ) shouldDisplayMoreApps:( UIView * )moreAppsView {
 		
-		return NO;
+		return YES;
 	}
-	
+
+	- (void)didDismissMoreApps {
+		[[Chartboost sharedChartboost] cacheMoreApps];
+	}
+
 @end
 
 #endif

@@ -488,6 +488,7 @@ void MOAIHttpTaskNSURL::SetVerb ( u32 verb ) {
 			break;
 			
 		case HTTP_DELETE:
+			mOpt = "DELETE";
 			//result = curl_easy_setopt ( this->mEasyHandle, CURLOPT_CUSTOMREQUEST, "DELETE" );
 			break;
 	}

@@ -13,6 +13,8 @@
 	NSRange		mRange;
 }
 
+@property (nonatomic, retain) NSString* mText;
+
 	//----------------------------------------------------------------//
 	-( void )	onChanged					:( NSString* )string;
 	-( BOOL )	textField					:( UITextField* )textField shouldChangeCharactersInRange:( NSRange )range replacementString:( NSString* )string;
@@ -38,12 +40,26 @@
 
 	//----------------------------------------------------------------//
 	-( BOOL ) textField :( UITextField* )textField shouldChangeCharactersInRange:( NSRange )range replacementString:( NSString* )string {
-		UNUSED ( textField );
+		//UNUSED ( textField );
 		
+		
+		NSString* updatedText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        self.mText = updatedText;
+		
+        mRange = range;
+		
+        [ self performSelector:@selector(onChanged:) withObject:string afterDelay:0.0f ];
+		
+        return YES;
+		
+		// old code
+		/*
+
 		mRange = range;
 		[ self performSelector:@selector(onChanged:) withObject:string afterDelay:0.0f ];
 		
 		return YES;
+		 */
 	}
 	
 	//----------------------------------------------------------------//
@@ -140,9 +156,10 @@ void MOAIKeyboardIOS::Finish () {
 		[ this->mTextField resignFirstResponder ];
 		[ this->mTextField removeFromSuperview ];
 		
-		id delegate = [ this->mTextField delegate ];
+		//id delegate = [ this->mTextField delegate ];
 		[ this->mTextField setDelegate:0 ];
-		[ delegate release ];
+		//[ delegate release ];
+		[ this->delegate release ];
 		
 		[ this->mTextField release ];
 		this->mTextField = 0;
@@ -166,7 +183,14 @@ MOAIKeyboardIOS::~MOAIKeyboardIOS () {
 void MOAIKeyboardIOS::PushText ( MOAILuaState& state ) {
 
 	if ( this->mTextField ) {
-		state.Push ([[ this->mTextField text ] UTF8String ]);
+		//state.Push ([[ this->mTextField text ] UTF8String ]);
+		
+		
+		if (this->delegate == nil)
+			                       state.Push([[mTextField text] UTF8String]);
+		               else
+			                       state.Push ([this->delegate.mText UTF8String]);
+		
 	}
 	else {
 		state.Push ();
@@ -225,7 +249,9 @@ void MOAIKeyboardIOS::ShowKeyboard ( cc8* text, int type, int returnKey, bool se
 		
 		CGRect frame = CGRectMake ( 0, 0, 320, 24 );
 		this->mTextField = [[ UITextField alloc ] initWithFrame:frame ];
-		[ this->mTextField setDelegate:[[ MOAITextFieldDelegate alloc ] init ]];
+		//[ this->mTextField setDelegate:[[ MOAITextFieldDelegate alloc ] init ]];
+		this->delegate = [[ MOAITextFieldDelegate alloc ] init ];
+		[ this->mTextField setDelegate:this->delegate];
 		
 		[ window addSubview:this->mTextField ];
 	}

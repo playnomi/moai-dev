@@ -12,6 +12,48 @@
 
 extern JavaVM* jvm;
 
+
+//----------------------------------------------------------------//
+//----------------------------------------------------------------//
+/**	@name	hasCachedInterstitial
+ @text	returns whether a cached ad is available
+ 
+ @out 	bool	True, if an ad is cached.
+ */
+int MOAIChartBoostAndroid::_hasCachedInterstitial ( lua_State* L ) {
+    
+    MOAILuaState state ( L );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( javaClass == NULL ) {
+        
+		USLog::Print ( "MoaiChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "hasCachedInterstitial", "()Z" );
+    	if ( javaMethod == NULL ) {
+            
+			USLog::Print ( "MoaiChartBoostAndroid: Unable to find static java method %s", "isConnected" );
+    	} else {
+            
+			bool result = env->CallStaticObjectMethod ( javaClass, javaMethod );
+            
+            lua_pushboolean(state, result);
+            
+            return 1;
+		}
+	}
+    
+    lua_pushnil ( state );
+    
+	return 1;
+    
+}
+
+
+
 //================================================================//
 // lua
 //================================================================//
@@ -106,6 +148,58 @@ int MOAIChartBoostAndroid::_setListener ( lua_State* L ) {
 	return 0;
 }
 
+int MOAIChartBoostAndroid::_cacheMoreApps ( lua_State* L ) {
+	
+    MOAILuaState state ( L );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID cacheMoreApps = env->GetStaticMethodID ( chartboost, "cacheMoreApps", "()V" );
+    	if ( cacheMoreApps == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "cacheMoreApps" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, cacheMoreApps );
+		}
+	}
+    
+	return 0;
+    
+}
+
+int MOAIChartBoostAndroid::_showMoreApps ( lua_State* L ) {
+	
+    MOAILuaState state ( L );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID showMoreApps = env->GetStaticMethodID ( chartboost, "showMoreApps", "()V" );
+    	if ( showMoreApps == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "showMoreApps" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, showMoreApps );
+		}
+	}
+    
+	return 0;
+    
+}
+
 //----------------------------------------------------------------//
 /**	@name	showInterstitial
 	@text	Request an interstitial ad display if a cached ad is available.
@@ -164,10 +258,14 @@ void MOAIChartBoostAndroid::RegisterLuaClass ( MOAILuaState& state ) {
 	state.SetField ( -1, "INTERSTITIAL_DISMISSED", 		( u32 )INTERSTITIAL_DISMISSED );
 
 	luaL_Reg regTable [] = {
+		{ "hasCachedInterstitial",	_hasCachedInterstitial },
 		{ "init",				_init },
 		{ "loadInterstitial",	_loadInterstitial },
 		{ "setListener",		_setListener },
 		{ "showInterstitial",	_showInterstitial },
+		{ "cacheMoreApps",		_cacheMoreApps },
+		{ "showMoreApps",		_showMoreApps },
+        
 		{ NULL, NULL }
 	};
 
