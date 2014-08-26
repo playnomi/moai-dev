@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		031711CB1989D9E9000BA658 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031711CA1989D9E9000BA658 /* AdColony.framework */; };
+		031711D9198AD34D000BA658 /* CBAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 031711D8198AD34D000BA658 /* CBAnalytics.h */; };
 		031A560E17E51B80004C5DB5 /* Tapjoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A560D17E51B80004C5DB5 /* Tapjoy.framework */; };
 		031BBA5C13B17BD80005ECE0 /* MOAIEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 031BBA5A13B17BD80005ECE0 /* MOAIEnvironment.cpp */; };
 		031BBA5D13B17BD80005ECE0 /* MOAIEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 031BBA5B13B17BD80005ECE0 /* MOAIEnvironment.h */; };
@@ -1120,7 +1122,6 @@
 		034B8955164884AC00230182 /* MOAIUrlMgrNSURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B8951164884AC00230182 /* MOAIUrlMgrNSURL.h */; };
 		034B8956164884AC00230182 /* MOAIUrlMgrNSURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 034B8952164884AC00230182 /* MOAIUrlMgrNSURL.mm */; };
 		034B89C51649848000230182 /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89C31649848000230182 /* Flurry.h */; };
-		034B89D41649884A00230182 /* CBAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D01649884A00230182 /* CBAnalytics.h */; };
 		034B89D51649884A00230182 /* Chartboost.h in Headers */ = {isa = PBXBuildFile; fileRef = 034B89D11649884A00230182 /* Chartboost.h */; };
 		0392971613BE44010077B742 /* MOAIParticleDistanceEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E885BB13BE3E78008D75AA /* MOAIParticleDistanceEmitter.cpp */; };
 		0392971713BE44010077B742 /* MOAIParticleTimedEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07E885BD13BE3E78008D75AA /* MOAIParticleTimedEmitter.cpp */; };
@@ -1192,6 +1193,10 @@
 		03DABB9F166EE0C200EAE827 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03DABB9E166EE0C200EAE827 /* SystemConfiguration.framework */; };
 		03E4E94113664F7C008D079B /* MOAIParticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E4E94013664F7C008D079B /* MOAIParticle.h */; };
 		03E4E94213664F7C008D079B /* MOAIParticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E4E94013664F7C008D079B /* MOAIParticle.h */; };
+		03FDB69C1947A2E000F44469 /* CBMoreAppsButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 03FDB6981947A2E000F44469 /* CBMoreAppsButton.h */; };
+		03FDB69D1947A2E000F44469 /* CBNewsfeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 03FDB6991947A2E000F44469 /* CBNewsfeed.h */; };
+		03FDB69E1947A2E000F44469 /* CBNewsfeedUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 03FDB69A1947A2E000F44469 /* CBNewsfeedUI.h */; };
+		03FDB6A11947A2E800F44469 /* CBStory.h in Headers */ = {isa = PBXBuildFile; fileRef = 03FDB6A01947A2E800F44469 /* CBStory.h */; };
 		071398D214F46C5A00745A12 /* AdColonyPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 0725E2EC14F45AE200551DB5 /* AdColonyPublic.h */; };
 		075110E9149AD7C3006C0B61 /* MOAIGridPathGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075110E1149AD7C3006C0B61 /* MOAIGridPathGraph.cpp */; };
 		075110EA149AD7C3006C0B61 /* MOAIGridPathGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075110E1149AD7C3006C0B61 /* MOAIGridPathGraph.cpp */; };
@@ -3662,6 +3667,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		031711CA1989D9E9000BA658 /* AdColony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdColony.framework; path = "../../3rdparty/AdColony-iOS-SDK-master/AdColony.framework"; sourceTree = "<group>"; };
+		031711D8198AD34D000BA658 /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
 		031A560D17E51B80004C5DB5 /* Tapjoy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tapjoy.framework; path = ../../3rdparty/Tapjoy.embeddedframework/Tapjoy.framework; sourceTree = "<group>"; };
 		031BBA5A13B17BD80005ECE0 /* MOAIEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIEnvironment.cpp; sourceTree = "<group>"; };
 		031BBA5B13B17BD80005ECE0 /* MOAIEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIEnvironment.h; sourceTree = "<group>"; };
@@ -4215,9 +4222,7 @@
 		034B8952164884AC00230182 /* MOAIUrlMgrNSURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MOAIUrlMgrNSURL.mm; path = "moaiext-iphone/MOAIUrlMgrNSURL.mm"; sourceTree = "<group>"; };
 		034B89C31649848000230182 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		034B89C41649848000230182 /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
-		034B89D01649884A00230182 /* CBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBAnalytics.h; sourceTree = "<group>"; };
 		034B89D11649884A00230182 /* Chartboost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chartboost.h; sourceTree = "<group>"; };
-		034B89D21649884A00230182 /* libChartboost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChartboost.a; sourceTree = "<group>"; };
 		034B89D31649884A00230182 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0379C5961333ECD800E89DDC /* libmoai-ios-3rdparty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-ios-3rdparty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		039C283B138EDAB300A3A780 /* MOAIDeckRemapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIDeckRemapper.cpp; sourceTree = "<group>"; };
@@ -4512,6 +4517,10 @@
 		03DABB9C166EE0BA00EAE827 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		03DABB9E166EE0C200EAE827 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		03E4E94013664F7C008D079B /* MOAIParticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIParticle.h; sourceTree = "<group>"; };
+		03FDB6981947A2E000F44469 /* CBMoreAppsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBMoreAppsButton.h; sourceTree = "<group>"; };
+		03FDB6991947A2E000F44469 /* CBNewsfeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNewsfeed.h; sourceTree = "<group>"; };
+		03FDB69A1947A2E000F44469 /* CBNewsfeedUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBNewsfeedUI.h; sourceTree = "<group>"; };
+		03FDB6A01947A2E800F44469 /* CBStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBStory.h; sourceTree = "<group>"; };
 		0705D8C014F46A6D009537C3 /* libmoai-ios-adcolony.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-ios-adcolony.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		071106EE13C6353400EE7C53 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		071398D414F46E9E00745A12 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
@@ -6389,6 +6398,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031711CB1989D9E9000BA658 /* AdColony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6535,6 +6545,7 @@
 		032409EE13564CAF000ADC60 /* 3rd party */ = {
 			isa = PBXGroup;
 			children = (
+				031711CA1989D9E9000BA658 /* AdColony.framework */,
 				0344B8E8176955FD002A9703 /* GrowMobile */,
 				03C6EE3716D3282400736AB5 /* FacebookSDK */,
 				034B89CF1649884A00230182 /* Chartboost */,
@@ -7243,9 +7254,12 @@
 		034B89CF1649884A00230182 /* Chartboost */ = {
 			isa = PBXGroup;
 			children = (
-				034B89D01649884A00230182 /* CBAnalytics.h */,
+				031711D8198AD34D000BA658 /* CBAnalytics.h */,
+				03FDB6A01947A2E800F44469 /* CBStory.h */,
+				03FDB6981947A2E000F44469 /* CBMoreAppsButton.h */,
+				03FDB6991947A2E000F44469 /* CBNewsfeed.h */,
+				03FDB69A1947A2E000F44469 /* CBNewsfeedUI.h */,
 				034B89D11649884A00230182 /* Chartboost.h */,
-				034B89D21649884A00230182 /* libChartboost.a */,
 				034B89D31649884A00230182 /* README.md */,
 			);
 			name = Chartboost;
@@ -12179,6 +12193,8 @@
 				07AF16C313F45A0100E38D1D /* MOAIPartitionResultMgr.h in Headers */,
 				66D967FC14047A2500017919 /* MOAIScriptDeck.h in Headers */,
 				CDF71312141EBC5C00D650CA /* MOAIGfxResource.h in Headers */,
+				03FDB69C1947A2E000F44469 /* CBMoreAppsButton.h in Headers */,
+				03FDB69D1947A2E000F44469 /* CBNewsfeed.h in Headers */,
 				CDBD3D2F1425DC2600BC33D4 /* MOAIBox2DDistanceJoint.h in Headers */,
 				CDBD3D311425DC2600BC33D4 /* MOAIBox2DFrictionJoint.h in Headers */,
 				CDBD3D331425DC2600BC33D4 /* MOAIBox2DGearJoint.h in Headers */,
@@ -12192,6 +12208,7 @@
 				CDEBDE53146909ED00C86DF9 /* MOAIBox2DRopeJoint.h in Headers */,
 				CDEBDE57146909ED00C86DF9 /* MOAIBox2DWheelJoint.h in Headers */,
 				CD18CEA614693BC100990FE1 /* MOAICanary.h in Headers */,
+				03FDB69E1947A2E000F44469 /* CBNewsfeedUI.h in Headers */,
 				CD18CEAA14693BC100990FE1 /* MOAIDeserializer.h in Headers */,
 				CD18CEAE14693BC100990FE1 /* MOAIGlobals.h in Headers */,
 				CD18CEB414693BC100990FE1 /* MOAILua.h in Headers */,
@@ -12349,6 +12366,7 @@
 				6637040616128038002D0D27 /* USHexReader.h in Headers */,
 				6637040E161280E1002D0D27 /* USHashWriter.h in Headers */,
 				034B894B164883C900230182 /* MOAIHttpTaskNSURL.h in Headers */,
+				03FDB6A11947A2E800F44469 /* CBStory.h in Headers */,
 				034B894D164883C900230182 /* MOAIImagePickerIOS.h in Headers */,
 				034B8953164884AC00230182 /* MOAIFlurryIOS.h in Headers */,
 				034B8955164884AC00230182 /* MOAIUrlMgrNSURL.h in Headers */,
@@ -12411,6 +12429,7 @@
 			files = (
 				071398D214F46C5A00745A12 /* AdColonyPublic.h in Headers */,
 				E9CA1E02151AE80E005F39B7 /* MOAIAdColonyIOS.h in Headers */,
+				031711D9198AD34D000BA658 /* CBAnalytics.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12702,7 +12721,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98DBDC81537A2BF00514387 /* MOAIChartBoostIOS.h in Headers */,
-				034B89D41649884A00230182 /* CBAnalytics.h in Headers */,
 				034B89D51649884A00230182 /* Chartboost.h in Headers */,
 				03A7E8821664606F00778BC3 /* AKU-chartboost.h in Headers */,
 			);
@@ -16494,6 +16512,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/stephensullivan/moai-dev/3rdparty/AdColony-iOS-SDK-master",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
@@ -16527,6 +16549,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/stephensullivan/moai-dev/3rdparty/AdColony-iOS-SDK-master",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
@@ -16560,6 +16586,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/stephensullivan/moai-dev/3rdparty/AdColony-iOS-SDK-master",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
@@ -19018,6 +19048,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD_32_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/stephensullivan/moai-dev/3rdparty/AdColony-iOS-SDK-master",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;

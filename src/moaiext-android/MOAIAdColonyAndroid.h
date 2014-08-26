@@ -33,6 +33,7 @@ public:
 		VIDEO_FAILED_IN_ZONE,
 		VIDEO_PAUSED_IN_ZONE,
 		VIDEO_RESUMED_IN_ZONE,
+		VIDEO_V_4_V_C_REWARD,
 		TOTAL
 	};
 	
@@ -41,6 +42,7 @@ public:
 			MOAIAdColonyAndroid		();
 			~MOAIAdColonyAndroid	();
 	void 	NotifyVideoComplete		();
+	void	NotifyV4VCReward            ( int event, cc8* zone, int amount);        
 	void	RegisterLuaClass		( MOAILuaState& state );
 };
 

@@ -82,8 +82,13 @@ int MOAIAdColonyIOS::_init ( lua_State* L ) {
 	[ MOAIAdColonyIOS::Get ().mZones release ];
 	MOAIAdColonyIOS::Get ().mZones = zones;
     
-	[ AdColony initAdColonyWithDelegate:MOAIAdColonyIOS::Get ().mAdColonyDelegate ];
+	//[ AdColony initAdColonyWithDelegate:MOAIAdColonyIOS::Get ().mAdColonyDelegate ];
     
+	[ AdColony configureWithAppID:[[ NSString alloc ] initWithUTF8String:appID ]
+						  zoneIDs:[zones allValues]
+						 delegate:MOAIAdColonyIOS::Get ().mAdColonyDelegate
+						  logging:false];
+	
 	return 0;
 }
 
@@ -141,6 +146,20 @@ int MOAIAdColonyIOS::_videoReadyForZone ( lua_State *L ) {
 //================================================================//
 
 //----------------------------------------------------------------//
+void MOAIAdColonyIOS::NotifyV4VCReward ( int event, cc8* zone, int amount ) {
+	
+	MOAILuaStateHandle state = MOAILuaRuntime::Get ().State ();
+	
+	if ( this->PushListener ( event, state )) {
+		
+		state.Push ( zone );
+		state.Push ( amount );
+		state.DebugCall ( 2, 0 );
+	}
+}
+
+
+
 void MOAIAdColonyIOS::NotifyTakeoverEventOccurred ( int event, cc8* zone ) {
 	
 	MOAILuaStateHandle state = MOAILuaRuntime::Get ().State ();
@@ -178,6 +197,7 @@ void MOAIAdColonyIOS::RegisterLuaClass ( MOAILuaState& state ) {
 	state.SetField ( -1, "VIDEO_FAILED_IN_ZONE", 	( u32 )VIDEO_FAILED_IN_ZONE );
 	state.SetField ( -1, "VIDEO_PAUSED_IN_ZONE", 	( u32 )VIDEO_PAUSED_IN_ZONE );
 	state.SetField ( -1, "VIDEO_RESUMED_IN_ZONE",	( u32 )VIDEO_RESUMED_IN_ZONE );
+	state.SetField ( -1, "VIDEO_V_4_V_C_REWARD",	( u32 )VIDEO_V_4_V_C_REWARD);
     
 	luaL_Reg regTable [] = {
 		{ "getDeviceID",		_getDeviceID },
@@ -211,6 +231,17 @@ void MOAIAdColonyIOS::RegisterLuaClass ( MOAILuaState& state ) {
 		return MOAIAdColonyIOS::Get ().mZones;
     }
 
+	- ( void ) onAdColonyV4VCReward:(BOOL)success currencyName:(NSString*)currencyName currencyAmount:(int)amount inZone:(NSString*)zoneID {
+	
+		MOAIAdColonyIOS::Get ().NotifyV4VCReward ( MOAIAdColonyIOS::Get ().VIDEO_V_4_V_C_REWARD, [ zoneID UTF8String ], amount);
+	
+	}
+
+	- ( void ) onAdColonyAdAvailabilityChange:(BOOL)available inZone:(NSString*) zoneID {
+	
+		NSLog(@"onAdColonyAdAvailabilityChange %i %@", available, zoneID);
+	}
+
 @end
 
 //================================================================//
@@ -223,30 +254,16 @@ void MOAIAdColonyIOS::RegisterLuaClass ( MOAILuaState& state ) {
 	#pragma mark Protocol MOAIAdColonyIOSTakeoverDelegate
 	//================================================================//
 
-	- (void) adColonyTakeoverBeganForZone:( NSString * )zone {
+	- (void) onAdColonyAdStartedInZone:( NSString * )zone {
 
 		MOAIAdColonyIOS::Get ().NotifyTakeoverEventOccurred ( MOAIAdColonyIOS::Get ().VIDEO_BEGAN_IN_ZONE, [ zone UTF8String ]);
 	}
 
-	- (void) adColonyTakeoverEndedForZone:( NSString * )zone withVC:(BOOL)withVirtualCurrencyAward {
+	- (void) onAdColonyAdAttemptFinished:( NSString * )zone withVC:(BOOL)withVirtualCurrencyAward {
 		
 		MOAIAdColonyIOS::Get ().NotifyTakeoverEventOccurred ( MOAIAdColonyIOS::Get ().VIDEO_ENDED_IN_ZONE, [ zone UTF8String ]);
 	}
 
-	- (void) adColonyVideoAdNotServedForZone:( NSString * )zone {
-		
-		MOAIAdColonyIOS::Get ().NotifyTakeoverEventOccurred ( MOAIAdColonyIOS::Get ().VIDEO_FAILED_IN_ZONE, [ zone UTF8String ]);
-	}
-
-	- (void) adColonyVideoAdPausedInZone:( NSString * )zone {
-		
-		MOAIAdColonyIOS::Get ().NotifyTakeoverEventOccurred ( MOAIAdColonyIOS::Get ().VIDEO_PAUSED_IN_ZONE, [ zone UTF8String ]);
-	}
-
-	- (void)adColonyVideoAdResumedInZone:( NSString * )zone {
-		
-		MOAIAdColonyIOS::Get ().NotifyTakeoverEventOccurred ( MOAIAdColonyIOS::Get ().VIDEO_RESUMED_IN_ZONE, [ zone UTF8String ]);
-	}
 
 @end
 

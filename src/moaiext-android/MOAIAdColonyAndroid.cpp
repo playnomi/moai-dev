@@ -253,6 +253,23 @@ int MOAIAdColonyAndroid::_videoReadyForZone ( lua_State *L ) {
 // MOAIAdColonyAndroid
 //================================================================//
 //----------------------------------------------------------------//
+
+void MOAIAdColonyAndroid::NotifyV4VCReward ( int event, cc8* zone, int amount ) {
+	
+	MOAILuaRef& callback = this->mListeners [ event ];
+	
+	if ( callback ) {
+		
+		MOAILuaStateHandle state = callback.GetSelf ();
+
+        lua_pushstring ( state, zone );
+		lua_pushinteger ( state, amount );
+        
+		state.DebugCall ( 2, 0 );
+	}
+}
+
+
 void MOAIAdColonyAndroid::NotifyVideoComplete () {	
 	
 	MOAILuaRef& callback = this->mListeners [ VIDEO_ENDED_IN_ZONE ];
@@ -284,6 +301,7 @@ void MOAIAdColonyAndroid::RegisterLuaClass ( MOAILuaState& state ) {
 	state.SetField ( -1, "VIDEO_FAILED_IN_ZONE", 	( u32 )VIDEO_FAILED_IN_ZONE );
 	state.SetField ( -1, "VIDEO_PAUSED_IN_ZONE", 	( u32 )VIDEO_PAUSED_IN_ZONE );
 	state.SetField ( -1, "VIDEO_RESUMED_IN_ZONE",	( u32 )VIDEO_RESUMED_IN_ZONE );
+	state.SetField ( -1, "VIDEO_V_4_V_C_REWARD",	( u32 )VIDEO_V_4_V_C_REWARD);
 	
 	luaL_Reg regTable [] = {
 		{ "getDeviceID",		_getDeviceID },
@@ -306,5 +324,16 @@ extern "C" void Java_com_ziplinegames_moai_MoaiAdColony_AKUNotifyAdColonyVideoCo
 
 	MOAIAdColonyAndroid::Get ().NotifyVideoComplete ();
 }
+
+extern "C" void Java_com_ziplinegames_moai_MoaiAdColony_AKUNotifyAdColonyV4VCReward  ( JNIEnv* env, jclass obj,  jstring location, jint reward ) {
+	
+     const char* nativeLocationString = env->GetStringUTFChars(location, 0);
+    
+    // convert the objects to the reward
+    MOAIAdColonyAndroid::Get ().NotifyV4VCReward ( MOAIAdColonyAndroid::Get ().VIDEO_V_4_V_C_REWARD, nativeLocationString, reward);
+	
+}
+
+
 
 #endif

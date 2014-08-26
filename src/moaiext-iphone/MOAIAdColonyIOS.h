@@ -11,7 +11,7 @@
 
 #include <moaicore/moaicore.h>
 
-#import <AdColonyPublic.h>
+#import <AdColony/AdColony.h>
 
 @class MOAIAdColonyIOSDelegate;
 @class MOAIAdColonyIOSTakeoverDelegate;
@@ -44,6 +44,7 @@ public:
 		VIDEO_FAILED_IN_ZONE,
 		VIDEO_PAUSED_IN_ZONE,
 		VIDEO_RESUMED_IN_ZONE,
+		VIDEO_V_4_V_C_REWARD,
 		TOTAL
 	};
 
@@ -53,6 +54,7 @@ public:
             MOAIAdColonyIOS				();
 			~MOAIAdColonyIOS			();
 	void	NotifyTakeoverEventOccurred	( int event, cc8* zone );
+	void	NotifyV4VCReward            ( int event, cc8* zone, int amount);
 	void	RegisterLuaClass			( MOAILuaState& state );
 };
 
@@ -67,7 +69,7 @@ public:
 //================================================================//
 // MOAIAdColonyIOSTakeoverDelegate
 //================================================================//
-@interface MOAIAdColonyIOSTakeoverDelegate : NSObject < AdColonyTakeoverAdDelegate > {
+@interface MOAIAdColonyIOSTakeoverDelegate : NSObject < AdColonyAdDelegate > {
 @private
 }
 @end

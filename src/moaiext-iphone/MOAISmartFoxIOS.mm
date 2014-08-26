@@ -76,7 +76,7 @@ int MOAISmartFoxIOS::_isConnected( lua_State* L)
 {
 	MOAILuaState state ( L );
 	
-	BOOL result = false;
+	bool result = false;
 	
 	if (MOAISmartFoxIOS::Get().mSmartFox) {
 	
@@ -525,7 +525,7 @@ MOAISmartFoxIOS::MOAISmartFoxIOS () {
 	RTTI_SINGLE ( MOAIGlobalEventSource )	
 
 	mSmartFoxDelgate = [[ MoaiSmartFoxDelegate alloc ] init];
-	
+	mSmartFox = NULL;
 }
 
 //----------------------------------------------------------------//

@@ -24,7 +24,11 @@ int MOAIChartBoostAndroid::_hasCachedInterstitial ( lua_State* L ) {
     
     MOAILuaState state ( L );
     
+	cc8* location = lua_tostring ( state, 1 );
+    
 	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
 	
 	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
     if ( javaClass == NULL ) {
@@ -32,13 +36,13 @@ int MOAIChartBoostAndroid::_hasCachedInterstitial ( lua_State* L ) {
 		USLog::Print ( "MoaiChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
     } else {
         
-    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "hasCachedInterstitial", "()Z" );
+    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "hasCachedInterstitial", "(Ljava/lang/String;)V" );
     	if ( javaMethod == NULL ) {
             
 			USLog::Print ( "MoaiChartBoostAndroid: Unable to find static java method %s", "isConnected" );
     	} else {
             
-			bool result = env->CallStaticObjectMethod ( javaClass, javaMethod );
+			bool result = env->CallStaticObjectMethod ( javaClass, javaMethod, jlocation );
             
             lua_pushboolean(state, result);
             
@@ -133,6 +137,157 @@ int MOAIChartBoostAndroid::_loadInterstitial ( lua_State* L ) {
 	return 0;
 }
 
+
+int MOAIChartBoostAndroid::_setCustomId ( lua_State* L ) {
+
+    MOAILuaState state ( L );
+    
+	cc8* customId = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( customId, jcustomId );
+    
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID method = env->GetStaticMethodID ( chartboost, "setCustomId", "(Ljava/lang/String;)V" );
+    	if ( method == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "setCustomId" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, method, jcustomId );
+		}
+	}
+    
+	return 0;
+    
+}
+
+
+//----------------------------------------------------------------//
+/**	@name	_loadRewardedVideo
+ @text	Request that an interstitial ad be cached for later display.
+ 
+ @opt	string	locationId		Optional location ID.
+ @out 	nil
+ */
+int MOAIChartBoostAndroid::_loadRewardedVideo ( lua_State* L ) {
+	
+	MOAILuaState state ( L );
+    
+	cc8* location = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
+    
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID loadInterstitial = env->GetStaticMethodID ( chartboost, "loadRewardedVideo", "(Ljava/lang/String;)V" );
+    	if ( loadInterstitial == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "cacheRewardeVideo" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, loadInterstitial, jlocation );
+		}
+	}
+    
+	return 0;
+}
+
+
+//----------------------------------------------------------------//
+/**	@name	showRewardedVideo
+ @text	Request that an interstitial ad be cached for later display.
+ 
+ @opt	string	locationId		Optional location ID.
+ @out 	nil
+ */
+int MOAIChartBoostAndroid::_showRewardedVideo ( lua_State* L ) {
+	
+	MOAILuaState state ( L );
+    
+	cc8* location = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
+    
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID showInterstitial = env->GetStaticMethodID ( chartboost, "showRewardedVideo", "(Ljava/lang/String;)V" );
+    	if ( showInterstitial == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "showRewardedVideo" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, showInterstitial, jlocation );
+		}
+	}
+    
+	return 0;
+}
+
+//----------------------------------------------------------------//
+/**	@name	loadInterstitial
+ @text	Request that an interstitial ad be cached for later display.
+ 
+ @opt	string	locationId		Optional location ID.
+ @out 	nil
+ */
+int MOAIChartBoostAndroid::_hasRewardedVideo ( lua_State* L ) {
+	
+    MOAILuaState state ( L );
+    
+	cc8* location = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
+	
+	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( javaClass == NULL ) {
+        
+		USLog::Print ( "MoaiChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID javaMethod = env->GetStaticMethodID ( javaClass, "hasRewardedVideo", "(Ljava/lang/String;)Z" );
+    	if ( javaMethod == NULL ) {
+            
+			USLog::Print ( "MoaiChartBoostAndroid: Unable to find static java method %s", "hasRewardedVideo" );
+    	} else {
+            
+			bool result = env->CallStaticObjectMethod ( javaClass, javaMethod, jlocation );
+            
+            lua_pushboolean(state, result);
+            
+            return 1;
+		}
+	}
+    
+    lua_pushnil ( state );
+    
+	return 1;
+    
+}
+
+
+
+
 //----------------------------------------------------------------//
 int MOAIChartBoostAndroid::_setListener ( lua_State* L ) {
 	
@@ -152,7 +307,11 @@ int MOAIChartBoostAndroid::_cacheMoreApps ( lua_State* L ) {
 	
     MOAILuaState state ( L );
     
+	cc8* location = lua_tostring ( state, 1 );
+    
 	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
 	
 	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
     if ( chartboost == NULL ) {
@@ -160,13 +319,13 @@ int MOAIChartBoostAndroid::_cacheMoreApps ( lua_State* L ) {
 		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
     } else {
         
-    	jmethodID cacheMoreApps = env->GetStaticMethodID ( chartboost, "cacheMoreApps", "()V" );
+    	jmethodID cacheMoreApps = env->GetStaticMethodID ( chartboost, "cacheMoreApps", "(Ljava/lang/String;)V" );
     	if ( cacheMoreApps == NULL ) {
             
 			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "cacheMoreApps" );
     	} else {
             
-			env->CallStaticVoidMethod ( chartboost, cacheMoreApps );
+			env->CallStaticVoidMethod ( chartboost, cacheMoreApps, jlocation );
 		}
 	}
     
@@ -178,7 +337,11 @@ int MOAIChartBoostAndroid::_showMoreApps ( lua_State* L ) {
 	
     MOAILuaState state ( L );
     
+	cc8* location = lua_tostring ( state, 1 );
+    
 	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( location, jlocation );
 	
 	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
     if ( chartboost == NULL ) {
@@ -186,13 +349,13 @@ int MOAIChartBoostAndroid::_showMoreApps ( lua_State* L ) {
 		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
     } else {
         
-    	jmethodID showMoreApps = env->GetStaticMethodID ( chartboost, "showMoreApps", "()V" );
+    	jmethodID showMoreApps = env->GetStaticMethodID ( chartboost, "showMoreApps", "(Ljava/lang/String;)V" );
     	if ( showMoreApps == NULL ) {
             
 			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "showMoreApps" );
     	} else {
             
-			env->CallStaticVoidMethod ( chartboost, showMoreApps );
+			env->CallStaticVoidMethod ( chartboost, showMoreApps, jlocation );
 		}
 	}
     
@@ -254,18 +417,42 @@ MOAIChartBoostAndroid::~MOAIChartBoostAndroid () {
 //----------------------------------------------------------------//
 void MOAIChartBoostAndroid::RegisterLuaClass ( MOAILuaState& state ) {
 
+    state.SetField ( -1, "CB_LOCATION_STARTUP",( u32 )CB_LOCATION_STARTUP );
+	state.SetField ( -1, "CB_LOCATION_HOME_SCREEN",( u32 )CB_LOCATION_HOME_SCREEN );
+	state.SetField ( -1, "CB_LOCATION_MAIN_MENU",( u32 )CB_LOCATION_MAIN_MENU );
+	state.SetField ( -1, "CB_LOCATION_GAME_SCREEN",( u32 )CB_LOCATION_GAME_SCREEN );
+	state.SetField ( -1, "CB_LOCATION_ACHIEVEMENTS",( u32 )CB_LOCATION_ACHIEVEMENTS );
+	state.SetField ( -1, "CB_LOCATION_QUESTS",( u32 )CB_LOCATION_QUESTS );
+	state.SetField ( -1, "CB_LOCATION_PAUSE",( u32 )CB_LOCATION_PAUSE );
+	state.SetField ( -1, "CB_LOCATION_LEVEL_START",( u32 )CB_LOCATION_LEVEL_START );
+	state.SetField ( -1, "CB_LOCATION_LEVEL_COMPLETE",( u32 )CB_LOCATION_LEVEL_COMPLETE );
+	state.SetField ( -1, "CB_LOCATION_TURN_COMPLETE",( u32 )CB_LOCATION_TURN_COMPLETE );
+	state.SetField ( -1, "CB_LOCATION_IAP_STORE",( u32 )CB_LOCATION_IAP_STORE );
+	state.SetField ( -1, "CB_LOCATION_ITEM_STORE",( u32 )CB_LOCATION_ITEM_STORE );
+	state.SetField ( -1, "CB_LOCATION_GAME_OVER",( u32 )CB_LOCATION_GAME_OVER );
+	state.SetField ( -1, "CB_LOCATION_LEADERBOARD",( u32 )CB_LOCATION_LEADERBOARD );
+	state.SetField ( -1, "CB_LOCATION_SETTINGS",( u32 )CB_LOCATION_SETTINGS );
+	state.SetField ( -1, "CB_LOCATION_QUIT",( u32 )CB_LOCATION_QUIT );
+	
+	state.SetField ( -1, "DID_COMPLETE_REWARDED_VIDEO",	( u32 )DID_COMPLETE_REWARDED_VIDEO );
+	state.SetField ( -1, "INTERSTITIAL_LOAD_FAILED",	( u32 )INTERSTITIAL_LOAD_FAILED );
+	state.SetField ( -1, "INTERSTITIAL_DISMISSED", 		( u32 )INTERSTITIAL_DISMISSED );
+    
 	state.SetField ( -1, "INTERSTITIAL_LOAD_FAILED",	( u32 )INTERSTITIAL_LOAD_FAILED );
 	state.SetField ( -1, "INTERSTITIAL_DISMISSED", 		( u32 )INTERSTITIAL_DISMISSED );
 
 	luaL_Reg regTable [] = {
 		{ "hasCachedInterstitial",	_hasCachedInterstitial },
-		{ "init",				_init },
-		{ "loadInterstitial",	_loadInterstitial },
-		{ "setListener",		_setListener },
-		{ "showInterstitial",	_showInterstitial },
+		{ "init",					_init },
+		{ "loadInterstitial",		_loadInterstitial },
+		{ "setListener",			_setListener },
+		{ "showInterstitial",		_showInterstitial },
 		{ "cacheMoreApps",		_cacheMoreApps },
 		{ "showMoreApps",		_showMoreApps },
-        
+		{ "hasRewardedVideo",    _hasRewardedVideo },
+		{ "showRewardedVideo",    _showRewardedVideo },
+		{ "loadRewardedVideo",    _loadRewardedVideo },
+		{ "setCustomId",		   _setCustomId},
 		{ NULL, NULL }
 	};
 
@@ -298,6 +485,22 @@ void MOAIChartBoostAndroid::NotifyInterstitialLoadFailed () {
 	}
 }
 
+//----------------------------------------------------------------//
+void MOAIChartBoostAndroid::NotifiyDidCompleteRewardedVideo (cc8* location, int reward) {
+	
+	MOAILuaRef& callback = this->mListeners [ DID_COMPLETE_REWARDED_VIDEO ];
+	
+    if (callback) {
+		
+		MOAILuaStateHandle state = callback.GetSelf ();
+		
+		lua_pushstring ( state, location );
+        lua_pushinteger ( state, reward );
+        
+		state.DebugCall ( 2, 0 );
+	}
+}
+
 //================================================================//
 // ChartBoost JNI methods
 //================================================================//
@@ -313,5 +516,17 @@ extern "C" void Java_com_ziplinegames_moai_MoaiChartBoost_AKUNotifyChartBoostInt
 
 	MOAIChartBoostAndroid::Get ().NotifyInterstitialLoadFailed ();
 }
+
+//----------------------------------------------------------------//
+extern "C" void Java_com_ziplinegames_moai_MoaiChartBoost_AKUNotifyChartBoostDidCompleteRewardedVideo ( JNIEnv* env, jclass obj, jstring location, jint reward ) {
+    
+    const char* nativeLocationString = env->GetStringUTFChars(location, 0);
+    
+	 MOAIChartBoostAndroid::Get ().NotifiyDidCompleteRewardedVideo (nativeLocationString, reward);
+}
+
+
+
+
 
 #endif

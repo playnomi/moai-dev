@@ -137,7 +137,10 @@ int MOAISmartFoxAndroid::_connect ( lua_State* L ) {
 	int port = state.GetValue < int >( 3, 9933 );
     
 	JNI_GET_ENV ( jvm, env );
-	JNI_GET_JSTRING ( ip, jip);	
+	JNI_GET_JSTRING ( ip, jip);
+    
+    
+    USLog::Print ( "MOAISmartFoxAndroid::_connect ip %s %i", ip, port );
     
     
 	jclass javaClass = env->FindClass ( "com/ziplinegames/moai/MoaiSmartFox" );
@@ -821,6 +824,7 @@ void MOAISmartFoxAndroid::RegisterLuaClass ( MOAILuaState& state ) {
 		{ "initWithSocket",			_initWithSocket },
 		{ "login",					_login },
 		{ "connect",				_connect },
+        { "disconnect",				_disconnect },
 		{ "isConnected",			_isConnected },
 		{ "sendPublicMessageRequest",		_sendPublicMessageRequest},
 		{ "sendJoinRoomRequest",	_sendJoinRoomRequest},
