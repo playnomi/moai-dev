@@ -399,6 +399,89 @@ int MOAIChartBoostAndroid::_showInterstitial ( lua_State* L ) {
 	return 0;
 }
 
+int MOAIChartBoostAndroid::_trackInAppGooglePlayPurchaseEvent ( lua_State* L ) {
+	
+   	MOAILuaState state ( L );
+    
+	cc8* title = lua_tostring ( state, 1 );
+    cc8* description = lua_tostring ( state, 1 );
+    cc8* price = lua_tostring ( state, 1 );
+    cc8* currency = lua_tostring ( state, 1 );
+    cc8* productID = lua_tostring ( state, 1 );
+    cc8* purchaseData = lua_tostring ( state, 1 );
+    cc8* purchaseSignature = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( title, jtitle );
+    JNI_GET_JSTRING ( description, jdescription );
+    JNI_GET_JSTRING ( price, jprice );
+    JNI_GET_JSTRING ( currency, jcurrency );
+    JNI_GET_JSTRING ( productID, jproductID );
+    JNI_GET_JSTRING ( purchaseData, jpurchaseData );
+    JNI_GET_JSTRING ( purchaseSignature, jpurchaseSignature );
+    
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppGooglePlayPurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+    	if ( method == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "trackInAppGooglePlayPurchaseEvent" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, method, jtitle, jdescription, jprice, jcurrency, jproductID, jpurchaseData, jpurchaseSignature);
+		}
+	}
+    
+	return 0;
+}
+
+int MOAIChartBoostAndroid::_trackInAppAmazonStorePurchaseEvent ( lua_State* L ) {
+	
+   	MOAILuaState state ( L );
+    
+	cc8* title = lua_tostring ( state, 1 );
+    cc8* description = lua_tostring ( state, 1 );
+    cc8* price = lua_tostring ( state, 1 );
+    cc8* currency = lua_tostring ( state, 1 );
+    cc8* productID = lua_tostring ( state, 1 );
+    cc8* userID = lua_tostring ( state, 1 );
+    cc8* purchaseToken = lua_tostring ( state, 1 );
+    
+	JNI_GET_ENV ( jvm, env );
+	
+	JNI_GET_JSTRING ( title, jtitle );
+    JNI_GET_JSTRING ( description, jdescription );
+    JNI_GET_JSTRING ( price, jprice );
+    JNI_GET_JSTRING ( currency, jcurrency );
+    JNI_GET_JSTRING ( productID, jproductID );
+    JNI_GET_JSTRING ( userID, juserID );
+    JNI_GET_JSTRING ( purchaseToken, jpurchaseToken );
+    
+	jclass chartboost = env->FindClass ( "com/ziplinegames/moai/MoaiChartBoost" );
+    if ( chartboost == NULL ) {
+        
+		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
+    } else {
+        
+    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppAmazonStorePurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+    	if ( method == NULL ) {
+            
+			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "trackInAppGooglePlayPurchaseEvent" );
+    	} else {
+            
+			env->CallStaticVoidMethod ( chartboost, method, jtitle, jdescription, jprice, jcurrency, jproductID, juserID, jpurchaseToken);
+		}
+	}
+    
+	return 0;
+}
+
+
 //================================================================//
 // MOAIChartBoostAndroid
 //================================================================//
@@ -442,6 +525,8 @@ void MOAIChartBoostAndroid::RegisterLuaClass ( MOAILuaState& state ) {
 	state.SetField ( -1, "INTERSTITIAL_DISMISSED", 		( u32 )INTERSTITIAL_DISMISSED );
 
 	luaL_Reg regTable [] = {
+		{ "trackInAppAmazonStorePurchaseEvent",	_trackInAppAmazonStorePurchaseEvent },
+		{ "trackInAppGooglePlayPurchaseEvent",	_trackInAppGooglePlayPurchaseEvent },
 		{ "hasCachedInterstitial",	_hasCachedInterstitial },
 		{ "init",					_init },
 		{ "loadInterstitial",		_loadInterstitial },

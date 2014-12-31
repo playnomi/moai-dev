@@ -10,33 +10,33 @@
 	<string>libmoai</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>356F4A72-F2D6-4CE6-923E-DC63985781A7</key>
-		<string>https://github.com/playnomi/moai-dev.git</string>
-		<key>3B1AA590-A57D-4929-8E29-DC3CC566725E</key>
+		<key>5E783F93D155D28D6FDDD04A2E042D14ED8FAB65</key>
 		<string>https://github.com/playnomi/client_common.git</string>
+		<key>63C4897045D0EF88507AD257AEF500CB53038CE0</key>
+		<string>https://github.com/playnomi/moai-dev.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>xcode/libmoai/libmoai.xcodeproj/project.xcworkspace</string>
+	<string>xcode/libmoai/libmoai.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>356F4A72-F2D6-4CE6-923E-DC63985781A7</key>
-		<string>../../../..</string>
-		<key>3B1AA590-A57D-4929-8E29-DC3CC566725E</key>
+		<key>5E783F93D155D28D6FDDD04A2E042D14ED8FAB65</key>
 		<string>../../../../../client_common</string>
+		<key>63C4897045D0EF88507AD257AEF500CB53038CE0</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/playnomi/moai-dev.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>356F4A72-F2D6-4CE6-923E-DC63985781A7</string>
+	<string>63C4897045D0EF88507AD257AEF500CB53038CE0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3B1AA590-A57D-4929-8E29-DC3CC566725E</string>
+			<string>5E783F93D155D28D6FDDD04A2E042D14ED8FAB65</string>
 			<key>IDESourceControlWCCName</key>
 			<string>client_common</string>
 		</dict>
@@ -44,9 +44,9 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>356F4A72-F2D6-4CE6-923E-DC63985781A7</string>
+			<string>63C4897045D0EF88507AD257AEF500CB53038CE0</string>
 			<key>IDESourceControlWCCName</key>
-			<string>moai-dev2</string>
+			<string>moai-dev</string>
 		</dict>
 	</array>
 </dict>

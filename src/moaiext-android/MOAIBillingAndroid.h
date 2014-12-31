@@ -133,7 +133,7 @@ public:
 	static int		MapGoogleResponseCode			( int code );
 	void			NotifyBillingSupported			( bool supported );
 	void			NotifyPurchaseResponseReceived	( int code, cc8* identifier );
-	void			NotifyPurchaseStateChanged		( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload );
+	void			NotifyPurchaseStateChanged		( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload, cc8* signedData, cc8* signature );
 	void			NotifyRestoreResponseReceived	( int code, bool more, cc8* offset );
 	void			NotifyUserIdDetermined			( int code, cc8* user );
 	void			RegisterLuaClass				( MOAILuaState& state );

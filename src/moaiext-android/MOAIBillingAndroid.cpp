@@ -481,7 +481,7 @@ void MOAIBillingAndroid::NotifyPurchaseResponseReceived ( int code, cc8* identif
 }
 
 //----------------------------------------------------------------//
-void MOAIBillingAndroid::NotifyPurchaseStateChanged ( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload ) {
+void MOAIBillingAndroid::NotifyPurchaseStateChanged ( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload, cc8* signedData, cc8* signature ) {
 	
 	MOAILuaRef& callback = this->mListeners [ PURCHASE_STATE_CHANGED ];
 	
@@ -495,6 +495,8 @@ void MOAIBillingAndroid::NotifyPurchaseStateChanged ( int code, cc8* identifier,
 		lua_pushstring ( state, user );
 		lua_pushstring ( state, notification );
 		lua_pushstring ( state, payload );
+        lua_pushstring ( state, signedData );
+        lua_pushstring ( state, signature );
 		
 		state.DebugCall ( 6, 0 );
 	}
@@ -561,7 +563,7 @@ extern "C" void Java_com_ziplinegames_moai_MoaiAmazonBilling_AKUNotifyAmazonPurc
 	JNI_GET_CSTRING ( juser, user );
 	JNI_GET_CSTRING ( jpayload, payload );
 		
-	MOAIBillingAndroid::Get ().NotifyPurchaseStateChanged ( MOAIBillingAndroid::MapAmazonPurchaseStateCode ( code ), identifier, order, user, NULL, payload );
+	MOAIBillingAndroid::Get ().NotifyPurchaseStateChanged ( MOAIBillingAndroid::MapAmazonPurchaseStateCode ( code ), identifier, order, user, NULL, payload, NULL, NULL );
 
 	JNI_RELEASE_CSTRING ( jidentifier, identifier );
 	JNI_RELEASE_CSTRING ( jorder, order );
@@ -610,19 +612,23 @@ extern "C" void Java_com_ziplinegames_moai_MoaiGoogleBilling_AKUNotifyGooglePurc
 }
 
 //----------------------------------------------------------------//
-extern "C" void Java_com_ziplinegames_moai_MoaiGoogleBilling_AKUNotifyGooglePurchaseStateChanged ( JNIEnv* env, jclass obj, jint code, jstring jidentifier, jstring jorder, jstring jnotification, jstring jpayload ) {
+extern "C" void Java_com_ziplinegames_moai_MoaiGoogleBilling_AKUNotifyGooglePurchaseStateChanged ( JNIEnv* env, jclass obj, jint code, jstring jidentifier, jstring jorder, jstring jnotification, jstring jpayload, jstring jsignedData, jstring jsignature ) {
 
 	JNI_GET_CSTRING ( jidentifier, identifier );
 	JNI_GET_CSTRING ( jorder, order );
 	JNI_GET_CSTRING ( jnotification, notification );
 	JNI_GET_CSTRING ( jpayload, payload );
+    JNI_GET_CSTRING ( jsignedData, signedData );
+    JNI_GET_CSTRING ( jsignature, signature );
 		
-	MOAIBillingAndroid::Get ().NotifyPurchaseStateChanged ( MOAIBillingAndroid::MapGooglePurchaseStateCode ( code ), identifier, order, NULL, notification, payload );
+	MOAIBillingAndroid::Get ().NotifyPurchaseStateChanged ( MOAIBillingAndroid::MapGooglePurchaseStateCode ( code ), identifier, order, NULL, notification, payload, signedData, signature );
 
 	JNI_RELEASE_CSTRING ( jidentifier, identifier );
 	JNI_RELEASE_CSTRING ( jorder, order );
 	JNI_RELEASE_CSTRING ( jnotification, notification );
 	JNI_RELEASE_CSTRING ( jpayload, payload );
+	JNI_RELEASE_CSTRING ( jsignedData, signedData );
+	JNI_RELEASE_CSTRING ( jsignature, signature );
 }
 	
 //----------------------------------------------------------------//

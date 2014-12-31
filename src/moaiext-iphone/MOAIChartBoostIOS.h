@@ -10,7 +10,7 @@
 #ifndef DISABLE_CHARTBOOST
 
 #include <moaicore/moaicore.h>
-#import <Chartboost.h>
+#import <Chartboost/Chartboost.h>
 
 @class MoaiChartBoostDelegate;
 

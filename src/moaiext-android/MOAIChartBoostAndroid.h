@@ -31,6 +31,9 @@ private:
         static int	_cacheMoreApps			( lua_State* L );
         static int	_showMoreApps			( lua_State* L );
         
+        static int	_trackInAppGooglePlayPurchaseEvent			( lua_State* L );
+        static int	_trackInAppAmazonStorePurchaseEvent			( lua_State* L );
+        
         
 	public:
 

@@ -29,6 +29,7 @@
 	#----------------------------------------------------------------#
 
 	MY_MOAI_ROOT	:= ../../..
+	MOAI_SDK_HOME := ../../..
 
 	#----------------------------------------------------------------#
 	# recursive wildcard function
@@ -38,7 +39,11 @@
 
 	LOCAL_MODULE 	:= moai
 	LOCAL_ARM_MODE 	:= $(MY_ARM_MODE)
-	LOCAL_LDLIBS 	:= -llog -lGLESv1_CM -lGLESv2 crypto/libs/$(TARGET_ARCH_ABI)/libcrypto.a ../obj/local/$(TARGET_ARCH_ABI)/libcares.a
+	
+	# S.S. old library before the new crypto stuff
+	#LOCAL_LDLIBS 	:= -llog -lGLESv1_CM -lGLESv2 crypto/libs/$(TARGET_ARCH_ABI)/libcrypto.a ../obj/local/$(TARGET_ARCH_ABI)/libcares.a
+	LOCAL_LDLIBS 	:= -llog -lGLESv1_CM -lGLESv2 ../obj/local/$(TARGET_ARCH_ABI)/libcares.a	
+	
 	LOCAL_CFLAGS	:= $(DISABLE_ADCOLONY) $(DISABLE_BILLING) $(DISABLE_CHARTBOOST) $(DISABLE_CRITTERCISM) $(DISABLE_FACEBOOK) $(DISABLE_NOTIFICATIONS) $(DISABLE_TAPJOY)
 	
 	ifeq ($(USE_FMOD),true)
@@ -49,6 +54,8 @@
 	ifeq ($(USE_UNTZ),true)
 		LOCAL_CFLAGS	+= -DUSE_UNTZ
 	endif
+	
+		MY_INCLUDES			:=
 	
 #----------------------------------------------------------------#
 # header search paths
@@ -96,7 +103,17 @@
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/luasocket-2.0.2/src
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/luasocket-2.0.2-embed/src
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/luasql-2.2.0/src
-	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/openssl-1.0.0d/include-android
+	
+	LOCAL_CFLAGS += -DAKU_WITH_CRYPTO=1
+	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/openssl-1.0.0m/include-android
+	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/openssl-1.0.0m/include
+	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/openssl-1.0.0m
+	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/openssl-1.0.0m/crypto
+	MY_INCLUDES += $(MOAI_SDK_HOME)/ant/libmoai/jni/ssl/3rdparty-crypto-a.mk
+	MY_INCLUDES += $(MOAI_SDK_HOME)/ant/libmoai/jni/ssl/3rdparty-crypto-b.mk
+  MY_INCLUDES += $(MOAI_SDK_HOME)/ant/libmoai/jni/ssl/3rdparty-crypto-c.mk
+	MY_INCLUDES += $(MOAI_SDK_HOME)/ant/libmoai/jni/ssl/3rdparty-crypto-d.mk
+	
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/ooid-0.99
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/sqlite-3.6.16
 	MY_HEADER_SEARCH_PATHS += $(MY_MOAI_ROOT)/3rdparty/tinyxml
@@ -159,14 +176,24 @@
 	LOCAL_STATIC_LIBRARIES += libpng
 	LOCAL_STATIC_LIBRARIES += libsqlite
 	LOCAL_STATIC_LIBRARIES += libssl
+	LOCAL_STATIC_LIBRARIES += libcrypto-a
+	LOCAL_STATIC_LIBRARIES += libcrypto-b	
+	LOCAL_STATIC_LIBRARIES += libcrypto-c	
+	LOCAL_STATIC_LIBRARIES += libcrypto-d					
 	LOCAL_STATIC_LIBRARIES += libtinyxml
 	LOCAL_STATIC_LIBRARIES += libzlcore
+
+
+  LOCAL_WHOLE_STATIC_LIBRARIES := libmoai-android libmoai-sim libmoai-core libcrypto-a libcrypto-b libcrypto-c libcrypto-d
+
 
 	include $(BUILD_SHARED_LIBRARY)
 
 #----------------------------------------------------------------#
 # include submodules
 #----------------------------------------------------------------#
+
+
 
 	include box2d/Android.mk
 	include c-ares/Android.mk
@@ -200,3 +227,6 @@
 	include aku/Android.mk
 	include moaicore/Android.mk
 	include uslscore/Android.mk
+	
+	include $(MY_INCLUDES)
+	

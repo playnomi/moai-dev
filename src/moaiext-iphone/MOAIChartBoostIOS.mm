@@ -7,7 +7,7 @@
 #ifndef DISABLE_CHARTBOOST
 
 #import <moaiext-iphone/MOAIChartBoostIOS.h>
-#import "CBAnalytics.h"
+#import <Chartboost/CBAnalytics.h>
 
 //================================================================//
 // lua
@@ -77,7 +77,7 @@ int MOAIChartBoostIOS::_loadInterstitial ( lua_State* L ) {
 		 
 		 UIWindow* mWindow = [[ UIWindow alloc ] initWithFrame:[ UIScreen mainScreen ].bounds ];
 		 
-		 [Chartboost showInterstitial:[mWindow rootViewController] location:loc];
+		 [Chartboost cacheInterstitial:loc];
 	 } else {
 		
 		 NSLog(@"Error: MOAIChartBoostIOS::_loadInterstitial is missing location");
@@ -414,34 +414,34 @@ void MOAIChartBoostIOS::NotifiyDidCompleteRewardedVideo (int reward, cc8* locati
 	#pragma mark Protocol MoaiChartBoostDelegate
 	//================================================================//
 
-	- ( BOOL ) shouldRequestInterstitial {
+	//- ( BOOL ) shouldRequestInterstitial {
 		
-		return YES;
-	}
+	//	return YES;
+	//}
 
 	- ( void ) didFailToLoadInterstitial {
 		
 		MOAIChartBoostIOS::Get ().NotifyInterstitialLoadFailed ();
 	}
 
-	- ( BOOL ) shouldDisplayInterstitial:( UIView * )interstitialView {
+	//- ( BOOL ) shouldDisplayInterstitial:( UIView * )interstitialView {
 		
-		return YES;
-	}
+	//	return YES;
+	//}
 
 	- ( void ) didDismissInterstitial:( UIView * )interstitialView {
 		
 		MOAIChartBoostIOS::Get ().NotifyInterstitialDismissed ();
 	}
 
-	- ( BOOL ) shouldDisplayMoreApps:( UIView * )moreAppsView {
+	//- ( BOOL ) shouldDisplayMoreApps:( UIView * )moreAppsView {
 		
-		return YES;
-	}
+	//	return YES;
+	//}
 
-	- (void)didDismissMoreApps {
+	//- (void)didDismissMoreApps {
 		//[[Chartboost sharedChartboost] cacheMoreApps];
-	}
+	//}
 
 	- (void)didCompleteRewardedVideo:(CBLocation)location withReward:(int)reward {
 		
