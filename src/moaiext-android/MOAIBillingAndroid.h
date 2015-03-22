@@ -11,10 +11,10 @@
 //================================================================//
 // MOAIBillingAndroid
 //================================================================//
-/**	@name	MOAIBillingAndroid
-	@text	Wrapper for in-app purchase integration on Android 
+/**	@lua	MOAIBillingAndroid
+	@text	Wrapper for in-app purchase integration on Android
 			devices using either Google Play or Amazon. Exposed 
-			to lua via MOAIBilling on all mobile platforms, but 
+			to Lua via MOAIBilling on all mobile platforms, but 
 			API differs on iOS and Android.
 
 	@const	CHECK_BILLING_SUPPORTED						Event code for billing support request completion.
@@ -39,6 +39,8 @@
 class MOAIBillingAndroid :
 	public MOAIGlobalClass < MOAIBillingAndroid, MOAILuaObject > {
 private:
+		
+	static cc8*	_luaParseTable 	( lua_State* L, int idx );
 
 	//----------------------------------------------------------------//
 	static int	_checkBillingSupported	( lua_State* L );
@@ -49,6 +51,16 @@ private:
 	static int	_setBillingProvider		( lua_State* L );
 	static int	_setListener			( lua_State* L );
 	static int	_setPublicKey			( lua_State* L );
+
+	// Google Play In App Biling v3: TODO - make this meld with existing interface better...
+	//----------------------------------------------------------------//
+	static int _checkInAppSupported			( lua_State* L );
+	static int _checkSubscriptionSupported	( lua_State* L );
+	static int _consumePurchaseSync			( lua_State* L );
+	static int _getPurchasedProducts		( lua_State* L );
+	static int _purchaseProduct				( lua_State* L );
+	static int _purchaseProductFortumo		( lua_State* L );
+	static int _requestProductsSync			( lua_State* L );
 	
 public:
 
@@ -66,6 +78,8 @@ public:
 	enum {
         BILLING_PROVIDER_GOOGLE,
         BILLING_PROVIDER_AMAZON,
+		BILLING_PROVIDER_TSTORE,
+		BILLING_PROVIDER_FORTUMO
 	};
 
 	enum {
@@ -119,10 +133,26 @@ public:
 		AMAZON_USER_ID_RESTORE_STATUS_SUCCESS,
 		AMAZON_USER_ID_RESTORE_STATUS_FAILED,
 	};
+	
+	enum {
+		BILLINGV3_PRODUCT_INAPP,
+		BILLINGV3_PRODUCT_SUBSCRIPTION,
+	};
+
+	enum {
+        BILLINGV3_RESPONSE_RESULT_OK = 0,
+        BILLINGV3_RESPONSE_RESULT_USER_CANCELED = 1,
+        BILLINGV3_RESPONSE_RESULT_BILLING_UNAVAILABLE = 3,
+        BILLINGV3_RESPONSE_RESULT_ITEM_UNAVAILABLE = 4,
+        BILLINGV3_RESPONSE_RESULT_DEVELOPER_ERROR = 5,
+        BILLINGV3_RESPONSE_RESULT_ERROR = 6,
+        BILLINGV3_RESPONSE_RESULT_ITEM_ALREADY_OWNED = 7,
+        BILLINGV3_RESPONSE_RESULT_ITEM_NOT_OWNED = 8,
+	}; 
 
 	cc8*			mBillingProvider;
 	MOAILuaRef		mListeners [ TOTAL ];
-	
+
 					MOAIBillingAndroid				();
 					~MOAIBillingAndroid				();
 	static int		MapAmazonPurchaseRequestStatus	( int code );
@@ -133,9 +163,10 @@ public:
 	static int		MapGoogleResponseCode			( int code );
 	void			NotifyBillingSupported			( bool supported );
 	void			NotifyPurchaseResponseReceived	( int code, cc8* identifier );
-	void			NotifyPurchaseStateChanged		( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload, cc8* signedData, cc8* signature );
+	void			NotifyPurchaseStateChanged		( int code, cc8* identifier, cc8* order, cc8* user, cc8* notification, cc8* payload );
 	void			NotifyRestoreResponseReceived	( int code, bool more, cc8* offset );
 	void			NotifyUserIdDetermined			( int code, cc8* user );
+	void 			NotifyFortumoPurchaseStateChanged( int, const cc8*, const cc8*, const cc8*, const cc8*, const cc8*, const cc8*, const cc8*, const cc8*, const cc8*);
 	void			RegisterLuaClass				( MOAILuaState& state );
 };
 
