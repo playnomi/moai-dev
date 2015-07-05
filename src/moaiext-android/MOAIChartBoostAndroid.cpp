@@ -404,12 +404,12 @@ int MOAIChartBoostAndroid::_trackInAppGooglePlayPurchaseEvent ( lua_State* L ) {
    	MOAILuaState state ( L );
     
 	cc8* title = lua_tostring ( state, 1 );
-    cc8* description = lua_tostring ( state, 1 );
-    cc8* price = lua_tostring ( state, 1 );
-    cc8* currency = lua_tostring ( state, 1 );
-    cc8* productID = lua_tostring ( state, 1 );
-    cc8* purchaseData = lua_tostring ( state, 1 );
-    cc8* purchaseSignature = lua_tostring ( state, 1 );
+    cc8* description = lua_tostring ( state, 2 );
+    cc8* price = lua_tostring ( state, 3 );
+    cc8* currency = lua_tostring ( state, 4 );
+    cc8* productID = lua_tostring ( state, 5 );
+    cc8* purchaseData = lua_tostring ( state, 6 );
+    cc8* purchaseSignature = lua_tostring ( state, 7 );
     
 	JNI_GET_ENV ( jvm, env );
 	
@@ -427,7 +427,7 @@ int MOAIChartBoostAndroid::_trackInAppGooglePlayPurchaseEvent ( lua_State* L ) {
 		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
     } else {
         
-    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppGooglePlayPurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppGooglePlayPurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
     	if ( method == NULL ) {
             
 			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "trackInAppGooglePlayPurchaseEvent" );
@@ -445,12 +445,12 @@ int MOAIChartBoostAndroid::_trackInAppAmazonStorePurchaseEvent ( lua_State* L ) 
    	MOAILuaState state ( L );
     
 	cc8* title = lua_tostring ( state, 1 );
-    cc8* description = lua_tostring ( state, 1 );
-    cc8* price = lua_tostring ( state, 1 );
-    cc8* currency = lua_tostring ( state, 1 );
-    cc8* productID = lua_tostring ( state, 1 );
-    cc8* userID = lua_tostring ( state, 1 );
-    cc8* purchaseToken = lua_tostring ( state, 1 );
+    cc8* description = lua_tostring ( state, 2 );
+    cc8* price = lua_tostring ( state, 3 );
+    cc8* currency = lua_tostring ( state, 4 );
+    cc8* productID = lua_tostring ( state, 5 );
+    cc8* userID = lua_tostring ( state, 6 );
+    cc8* purchaseToken = lua_tostring ( state, 7 );
     
 	JNI_GET_ENV ( jvm, env );
 	
@@ -468,7 +468,7 @@ int MOAIChartBoostAndroid::_trackInAppAmazonStorePurchaseEvent ( lua_State* L ) 
 		USLog::Print ( "MOAIChartBoostAndroid: Unable to find java class %s", "com/ziplinegames/moai/MoaiChartBoost" );
     } else {
         
-    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppAmazonStorePurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
+    	jmethodID method = env->GetStaticMethodID ( chartboost, "trackInAppAmazonStorePurchaseEvent", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V" );
     	if ( method == NULL ) {
             
 			USLog::Print ( "MOAIChartBoostAndroid: Unable to find static java method %s", "trackInAppGooglePlayPurchaseEvent" );
