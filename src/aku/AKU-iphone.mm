@@ -109,9 +109,9 @@ void AKUIphoneInit ( UIApplication* application ) {
 		REGISTER_LUA_CLASS ( MOAINotificationsIOS )
 	#endif
 
-	#ifndef DISABLE_CRITTERCISM
-		REGISTER_LUA_CLASS ( MOAICrittercismIOS )
-	#endif
+	//#ifndef DISABLE_CRITTERCISM
+	//	REGISTER_LUA_CLASS ( MOAICrittercismIOS )
+	//#endif
 		
 	#ifndef DISABLE_FACEBOOK
 		REGISTER_LUA_CLASS ( MOAIFacebookIOS )
@@ -121,7 +121,7 @@ void AKUIphoneInit ( UIApplication* application ) {
 		REGISTER_LUA_CLASS( MOAIFlurryIOS )
 	//#endif
 
-        REGISTER_LUA_CLASS ( MOAIGrowMobileIOS )
+        //REGISTER_LUA_CLASS ( MOAIGrowMobileIOS )
 	
 	// Device properties
 	MOAIEnvironment& environment = MOAIEnvironment::Get ();

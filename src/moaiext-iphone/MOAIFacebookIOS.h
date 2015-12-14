@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h> 
 #import <moaicore/moaicore.h>
 
-#import <Facebook.h>
-#import <FacebookSDK.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @class MOAIFacebookIOSDialogDelegate;
 @class MOAIFacebookIOSRequestDelegate;
@@ -61,13 +61,13 @@ public:
 	DECL_LUA_SINGLETON ( MOAIFacebookIOS );
 		
 	STLString						mExpirationDate;
-	Facebook*						mFacebook;
-	FBSession*						mSession;
+	//Facebook*						mFacebook;
+	//FBSession*						mSession;
 	STLString						mToken;
 	NSString*						mURLSchemeSuffix;
-	MOAIFacebookIOSDialogDelegate*	mFBDialogDelegate;
-	MOAIFacebookIOSRequestDelegate*	mFBRequestDelegate;
-	MOAIFacebookIOSSessionDelegate* mFBSessionDelegate;
+	//MOAIFacebookIOSDialogDelegate*	mFBDialogDelegate;
+	//MOAIFacebookIOSRequestDelegate*	mFBRequestDelegate;
+	//MOAIFacebookIOSSessionDelegate* mFBSessionDelegate;
 		
 	enum {
 		DIALOG_DID_COMPLETE,
@@ -96,26 +96,26 @@ public:
 //================================================================//
 // MOAIFacebookIOSDialogDelegate
 //================================================================//
-@interface MOAIFacebookIOSDialogDelegate : NSObject < FBDialogDelegate > {
-@private
-}
-@end
+//@interface MOAIFacebookIOSDialogDelegate : NSObject < FBDialogDelegate > {
+//@private
+//}
+//@end
 
 //================================================================//
 // MOAIFacebookIOSRequestDelegate
 //================================================================//
-@interface MOAIFacebookIOSRequestDelegate : NSObject < FBRequestDelegate > {
-@private
-}
-@end
+//@interface MOAIFacebookIOSRequestDelegate : NSObject < FBRequestDelegate > {
+//@private
+//}
+//@end
 
 //================================================================//
 // MOAIFacebookIOSSessionDelegate
 //================================================================//
-@interface MOAIFacebookIOSSessionDelegate : NSObject < FBSessionDelegate > {
-@private
-}
-@end
+//@interface MOAIFacebookIOSSessionDelegate : NSObject < FBSessionDelegate > {
+//@private
+//}
+//@end
 
 #endif  //DISABLE_FACEBOOK
 

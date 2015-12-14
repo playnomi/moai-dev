@@ -1,20 +1,97 @@
 AdColony iOS SDK
 ==================================
-Modified: 2013/11/18  
-SDK Version: 2.2.4  
+Modified: 2015/09/17  
+SDK Version: 2.6.0  
+
+iOS 9 
+----------------------------------
+iOS 9 has introduced a couple of changes that will affect your integration of our new SDK. Please note that following our iOS 9 [integration instructions](https://github.com/AdColony/AdColony-iOS-SDK/wiki/iOS-9) is a strict requirement for apps compiling against the iOS 9 SDK (Xcode 7). Failure to do so will result in ads being turned off for your application. 
+
+To Download:
+----------------------------------
+The simplest way to obtain the AdColony iOS SDK is to click the "Download ZIP" button located in the right-hand navigation pane of the Github repository page.
 
 Contains:
 ----------------------------------
 * AdColony.framework (iOS)
 * Sample Apps
   * AdColonyAdvanced
-  * AdColonyBasic
+  * AdColonyInstantFeed
   * AdColonyV4VC
 * W-9 Form.pdf
 
 Getting Started with AdColony:
 ----------------------------------
-First time and returning users should review the [quick start guide](https://github.com/AdColony/AdColony-iOS-SDK/wiki) because the API and usage of our iOS SDK have changed with this release.
+New and returning users should review the [quick start guide](https://github.com/AdColony/AdColony-iOS-SDK/wiki), which contains detailed integration instructions.
+
+2.6.0 Change Log:
+----------------------------------
+* Fully tested and certified for iOS 9 
+* iOS 9 multitasking compatibility
+* Optimized ad-caching algorithms
+* Removed requirement for ObjC linker flag
+* App install can now be triggered from in-feed native ads
+* `getVirtualCurrencyRewardsAvailableTodayForZone:` method no longer supported
+* New sample applications (Swift and ObjC)
+* SDK is compiled with bitcode
+* Improved logging
+* Xcode 7 support
+* Miscellaneous bug fixes
+
+2.5.3 Change Log:
+----------------------------------
+* Fixed bug causing view-dismissal code to be called multiple times
+* Miscellaneous bug fixes
+
+2.5.2 Change Log:
+----------------------------------
+* AdColonyNativeAdDelegate now reports engagement events from both in-feed and expanded states
+* Centered text in standard in-video engagement (IVE) button
+
+2.5.1 Change Log:
+----------------------------------
+* Native ads now maintain a weak reference to the app’s view controller
+* Native ad callback for capturing ad-engagement events
+* Serialized view-controller-dismissal and ad-finished callbacks (ad-finished fires second)
+
+2.5.0 Change Log:
+----------------------------------
+* WKWebView for iOS 8
+* API for reporting in-app purchases (IAPs)
+* New ad-completion callback to support In-App Purchase Promo (IAPP) feature
+* AdColonyAdInfo class for communicating ad-specific details
+* Increased minimum OS version for showing videos to 6.0; SDK disables itself on prior versions
+* ODIN1, OpenUDID, and MAC identifiers no longer collected
+
+2.4.13 Change Log:
+----------------------------------
+* Fully compatible with iOS 8.1
+* Stylistic improvements to in-video engagement feature
+* Fixed rare black screen on iPad Airs running iOS 8
+* Fixed first-time install crash bug caused by Unity 4.5
+* Miscellaneous bug fixes
+
+2.4.12 Change Log:
+----------------------------------
+* Fixed memory leak caused by UIWebView on iOS 8
+* Addressed multiple conflicts with Unity plugin
+* Improved orientation functionality
+
+2.4.10 Change Log:
+----------------------------------
+* Fully tested against the iOS 8 Gold Master
+* Refinements and optimizations to AdColony Instant-Feed
+* Bug fixes 
+
+2.3.12 Change Log:
+----------------------------------
+* Initial public release of AdColony Instant-Feed
+* New requirement: minimum Xcode Deployment Target of iOS 5.0
+* New public class AdColonyNativeAdView which implements AdColony Instant-Feed
+* AdColony class new method to request AdColonyNativeAdView objects
+* Removed collection of OpenUDID, ODIN1, and MAC-SHA1 device identifiers on iOS 7+
+* Removed collection of IDFV device identifier altogether
+* Bug fixes and threading improvements
 
 2.2.4 Change Log:
 ----------------------------------
@@ -56,12 +133,14 @@ First time and returning users should review the [quick start guide](https://git
 
 Sample Applications:
 ----------------------------------
-Included are three sample apps to use as examples and for help on AdColony integration. The basic app allows users to launch an ad, demonstrating simple usage of AdColony. The currency app demonstrates how to implement videos-for-virtual currency (V4VC) to enable users to watch videos in return for in-app virtual currency rewards (with currency balances stored client-side). The advanced app demonstrates advanced topics such as multiple zones and playing ads in apps with audio and music. 
+Included are three sample apps to use as examples and for help on AdColony integration, each of which has been written in Swift and ObjC. The basic app allows users to launch an ad, demonstrating simple usage of AdColony. The currency app demonstrates how to implement videos-for-virtual currency (V4VC) to enable users to watch videos in return for in-app virtual currency rewards (with currency balances stored client-side). The Instant-Feed app demonstrates recommended usage of AdColony's native ad unit within the context of a social feed application.
 
 
 Legal Requirements:
 ----------------------------------
-You must accept the terms and conditions on the AdColony website by registering in order to legally use the AdColony SDK. U.S. based companies will need to complete the W-9 form and send it to us, as well as complete the section on payment information on clients.adcolony.com, before publisher payments can be issued.
+By downloading the AdColony SDK, you are granted a limited, non-commercial license to use and review the SDK solely for evaluation purposes.  If you wish to integrate the SDK into any commercial applications, you must register an account with [AdColony](https://clients.adcolony.com/signup) and accept the terms and conditions on the AdColony website.
+
+Note that U.S. based companies will need to complete the W-9 form and send it to us before publisher payments can be issued.
 
 
 Contact Us:

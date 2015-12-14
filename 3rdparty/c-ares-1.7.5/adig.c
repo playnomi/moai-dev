@@ -52,6 +52,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#include <ares_inet_ntop.h>
+
 #include "ares.h"
 #include "ares_dns.h"
 #include "inet_ntop.h"

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "63C4897045D0EF88507AD257AEF500CB53038CE0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "63C4897045D0EF88507AD257AEF500CB53038CE0" : 0,
+    "5E783F93D155D28D6FDDD04A2E042D14ED8FAB65" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "05DBD067-BCAC-41FB-A337-519613BBD2B8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "63C4897045D0EF88507AD257AEF500CB53038CE0" : "moai-dev",
+    "5E783F93D155D28D6FDDD04A2E042D14ED8FAB65" : "client_common"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "libmoai",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "xcode\/libmoai\/libmoai.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/playnomi\/client_common.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5E783F93D155D28D6FDDD04A2E042D14ED8FAB65"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/playnomi\/moai-dev.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "63C4897045D0EF88507AD257AEF500CB53038CE0"
+    }
+  ]
+}

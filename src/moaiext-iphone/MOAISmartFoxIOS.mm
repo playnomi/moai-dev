@@ -768,7 +768,7 @@ void MOAISmartFoxIOS::RoomJoin(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", room.id);
+		state.SetField ( -1, "id", ( longun a )room.id);
 				
 		NSLog(@"about to count players %i", [room userCount]);
 		
@@ -1432,7 +1432,7 @@ void MOAISmartFoxIOS::SpectatorToPlayer(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", room.id);
+		state.SetField ( -1, "id", (long)room.id);
 		
 		NSLog(@"about to count players %i", [room userCount]);
 		

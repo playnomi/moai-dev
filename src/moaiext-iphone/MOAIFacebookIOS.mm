@@ -22,7 +22,7 @@
 int MOAIFacebookIOS::_extendToken ( lua_State* L ) {
 	
 	printf ( "extending token....\n" );
-	[ MOAIFacebookIOS::Get ().mFacebook extendAccessTokenIfNeeded ];
+	//[ MOAIFacebookIOS::Get ().mFacebook extendAccessTokenIfNeeded ];
 	return 0;
 }
 
@@ -35,14 +35,15 @@ int MOAIFacebookIOS::_extendToken ( lua_State* L ) {
  */
 int MOAIFacebookIOS::_getExpirationDate ( lua_State* L ) {
 	
+	
 	MOAILuaState state ( L );
 	
-	NSDateFormatter *formatter = [[ NSDateFormatter alloc ] init ];
-	[ formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss" ];
-	NSString *dateString = [ formatter stringFromDate:[ MOAIFacebookIOS::Get ().mFacebook expirationDate ]];
-	[ formatter release ];
+	//NSDateFormatter *formatter = [[ NSDateFormatter alloc ] init ];
+	//[ formatter setDateFormat:@"dd-MM-yyyy HH:mm:ss" ];
+	//NSString *dateString = [ formatter stringFromDate:[ MOAIFacebookIOS::Get ().mFacebook expirationDate ]];
+	//[ formatter release ];
 	
-	MOAIFacebookIOS::Get ().mExpirationDate = [ dateString UTF8String ];
+	//MOAIFacebookIOS::Get ().mExpirationDate = [ dateString UTF8String ];
 	if ( !MOAIFacebookIOS::Get ().mExpirationDate.empty ()) {
 		lua_pushstring ( L, MOAIFacebookIOS::Get ().mExpirationDate.c_str ());
 	} else {
@@ -64,7 +65,7 @@ int MOAIFacebookIOS::_getToken ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 	
-	MOAIFacebookIOS::Get ().mToken = [[ MOAIFacebookIOS::Get ().mFacebook accessToken ] UTF8String ];
+	//MOAIFacebookIOS::Get ().mToken = [[ MOAIFacebookIOS::Get ().mFacebook accessToken ] UTF8String ];
 	if ( !MOAIFacebookIOS::Get ().mToken.empty ()) {
 		
 		lua_pushstring ( L, MOAIFacebookIOS::Get ().mToken.c_str ());
@@ -86,9 +87,9 @@ int MOAIFacebookIOS::_getToken ( lua_State* L ) {
 int MOAIFacebookIOS::_graphRequest ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
-	cc8* path = state.GetValue < cc8* >( 1, "" );
-	NSString* nsPath = [[[ NSString alloc ] initWithUTF8String:path ] autorelease ];
-	[ MOAIFacebookIOS::Get ().mFacebook requestWithGraphPath:nsPath andDelegate:MOAIFacebookIOS::Get ().mFBRequestDelegate ];	
+	//cc8* path = state.GetValue < cc8* >( 1, "" );
+	//NSString* nsPath = [[[ NSString alloc ] initWithUTF8String:path ] autorelease ];
+	//[ MOAIFacebookIOS::Get ().mFacebook requestWithGraphPath:nsPath andDelegate:MOAIFacebookIOS::Get ().mFBRequestDelegate ];
 	
 	return 0;
 }
@@ -116,15 +117,15 @@ int MOAIFacebookIOS::_init ( lua_State* L ) {
 		
 		NSLog(@"init with URL scheme suffix: %@",MOAIFacebookIOS::Get ().mURLSchemeSuffix);
         
-		MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId:MOAIFacebookIOS::Get ().mAppId 
-																urlSchemeSuffix:MOAIFacebookIOS::Get ().mURLSchemeSuffix
-																andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
+	//	MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId:MOAIFacebookIOS::Get ().mAppId
+	//															urlSchemeSuffix:MOAIFacebookIOS::Get ().mURLSchemeSuffix
+	//															andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
 		MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
         
 	}
 	else {
         
-		MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId: [[ NSString alloc ] initWithUTF8String: appID ] andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
+	//	MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId: [[ NSString alloc ] initWithUTF8String: appID ] andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
 	
 		MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
 	}
@@ -152,11 +153,11 @@ int MOAIFacebookIOS::_requestWritePermissions ( lua_State* L ){
 			NSArray* permissions = [ paramsDict allValues ];
 			
 			
-			[[FBSession activeSession] reauthorizeWithPublishPermissions:permissions defaultAudience:FBSessionDefaultAudienceFriends completionHandler:^(FBSession *session, NSError* error) {
+		//	[[FBSession activeSession] reauthorizeWithPublishPermissions:permissions defaultAudience:FBSessionDefaultAudienceFriends completionHandler:^(FBSession *session, NSError* error) {
 			
-			NSLog(@"Reauthorized with publish permissions.");
+		//	NSLog(@"Reauthorized with publish permissions.");
 				
-			}];
+		//	}];
 				
 		}
 		else {
@@ -177,6 +178,7 @@ void MOAIFacebookIOS::FB_CreateNewSession(NSArray* permissions) {
 
 	NSLog(@"Create new FB session with appId: %@",MOAIFacebookIOS::Get ().mAppId);
 	
+	/*
 	// use email as the default for now
 	NSArray *permissions2 = [[NSArray alloc] initWithObjects:
 							@"email", nil];
@@ -197,7 +199,7 @@ void MOAIFacebookIOS::FB_CreateNewSession(NSArray* permissions) {
 	}
 	
 	[FBSession setActiveSession: mSession];
-
+	 */
 }
 
 
@@ -245,13 +247,14 @@ int MOAIFacebookIOS::_login ( lua_State* L ) {
 	}
 	
 	NSLog(@"Login new FB session with appId: %@", MOAIFacebookIOS::Get ().mAppId);
-	NSLog(@"Login new FB session with urlSchemeSuffix: %@", [MOAIFacebookIOS::Get ().mSession urlSchemeSuffix]);
+	//NSLog(@"Login new FB session with urlSchemeSuffix: %@", [MOAIFacebookIOS::Get ().mSession urlSchemeSuffix]);
 	
 	//NSArray *permissions = [[NSArray alloc] initWithObjects:
 	//						@"email",
 	//						nil];
 	
 	// Attempt to open the session. If the session is not open, show the user the Facebook login UX
+	/*
 	[[FBSession activeSession] openWithCompletionHandler:^(FBSession *session,
 														  FBSessionState status,
 														  NSError *error)
@@ -282,7 +285,7 @@ int MOAIFacebookIOS::_login ( lua_State* L ) {
 			
 		}
 	}];
-	
+	*/
 	return 0;
 }
 
@@ -301,8 +304,8 @@ int MOAIFacebookIOS::_logout ( lua_State* L ) {
 	// [ MOAIFacebookIOS::Get ().mFacebook logout ];
 	
 	// new way of logging out
-	[[FBSession activeSession] closeAndClearTokenInformation];
-	[FBSession setActiveSession:nil];
+	//[[FBSession activeSession] closeAndClearTokenInformation];
+	//[FBSession setActiveSession:nil];
 	
 	return 0;
 }
@@ -352,7 +355,7 @@ int MOAIFacebookIOS::_postToFeed ( lua_State* L ) {
 		[params setObject:to forKey:@"to"];
 	}
 	
-	[ MOAIFacebookIOS::Get ().mFacebook dialog:@"feed" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
+	//[ MOAIFacebookIOS::Get ().mFacebook dialog:@"feed" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
 	
 	return 0;
 }
@@ -401,8 +404,8 @@ int MOAIFacebookIOS::_sendRequest ( lua_State* L ) {
 	}
 	
 	
-	[MOAIFacebookIOS::Get ().mFacebook enableFrictionlessRequests];
-	[ MOAIFacebookIOS::Get ().mFacebook dialog:@"apprequests" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
+	//[MOAIFacebookIOS::Get ().mFacebook enableFrictionlessRequests];
+	//[ MOAIFacebookIOS::Get ().mFacebook dialog:@"apprequests" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
 	
 	return 0;
 }
@@ -423,7 +426,7 @@ int MOAIFacebookIOS::_sessionValid ( lua_State* L ) {
 	//lua_pushboolean ( state, [ MOAIFacebookIOS::Get ().mFacebook isSessionValid ]);
 	
 	// new way of checking for session
-	lua_pushboolean ( state, [[FBSession activeSession] isOpen] );
+	//lua_pushboolean ( state, [[FBSession activeSession] isOpen] );
 	
 	return 1;
 }
@@ -447,7 +450,7 @@ int MOAIFacebookIOS::_setExpirationDate ( lua_State* L ) {
 	NSDate *date = [ formatter dateFromString:dateString ];
 	
 	MOAIFacebookIOS::Get ().mExpirationDate = expirationDate;
-	MOAIFacebookIOS::Get ().mFacebook.expirationDate = date;
+	//MOAIFacebookIOS::Get ().mFacebook.expirationDate = date;
 	
 	[ dateString release ];
 	[ formatter release ];
@@ -469,14 +472,14 @@ int MOAIFacebookIOS::_setToken ( lua_State* L ) {
 	cc8* token = state.GetValue < cc8* >( 1, "" );
 	
 	MOAIFacebookIOS::Get ().mToken = token;
-	MOAIFacebookIOS::Get ().mFacebook.accessToken = [[ NSString alloc ] initWithUTF8String:token ];
+	//MOAIFacebookIOS::Get ().mFacebook.accessToken = [[ NSString alloc ] initWithUTF8String:token ];
 	
 	return 0;
 }
 
 int MOAIFacebookIOS::_applicationWillTerminate ( lua_State* L )
 {
-	[[FBSession activeSession] close];
+	//[[FBSession activeSession] close];
 }
 
 
@@ -490,17 +493,17 @@ MOAIFacebookIOS::MOAIFacebookIOS () {
 	RTTI_SINGLE ( MOAILuaObject )
 	RTTI_SINGLE ( MOAIGlobalEventSource )	
 	
-	mFBSessionDelegate = [[ MOAIFacebookIOSSessionDelegate alloc ] init];
-	mFBDialogDelegate = [[ MOAIFacebookIOSDialogDelegate alloc ] init ];
-	mFBRequestDelegate = [[ MOAIFacebookIOSRequestDelegate alloc ] init ];
+	//mFBSessionDelegate = [[ MOAIFacebookIOSSessionDelegate alloc ] init];
+	//mFBDialogDelegate = [[ MOAIFacebookIOSDialogDelegate alloc ] init ];
+	//mFBRequestDelegate = [[ MOAIFacebookIOSRequestDelegate alloc ] init ];
 }
 
 //----------------------------------------------------------------//
 MOAIFacebookIOS::~MOAIFacebookIOS () {
     
-	[ mFBSessionDelegate release ];	
-	[ mFBDialogDelegate release ];
-	[ mFBRequestDelegate release ];
+	//[ mFBSessionDelegate release ];
+	//[ mFBDialogDelegate release ];
+	//[ mFBRequestDelegate release ];
 }
 
 //----------------------------------------------------------------//
@@ -561,7 +564,7 @@ void MOAIFacebookIOS::DialogDidComplete ( ) {
 void MOAIFacebookIOS::HandleOpenURL ( NSURL* url ) {
 	
 	// this is the new one
-	[[FBSession activeSession] handleOpenURL:url];
+	//[[FBSession activeSession] handleOpenURL:url];
 	
 	// this is the old function that is only needed for dialogs
 	//[ mFacebook handleOpenURL:url ];
@@ -673,19 +676,19 @@ void MOAIFacebookIOS::SessionExtended ( cc8* token, cc8* expDate ) {
 	}
 }
 
-- ( void ) dialogDidComplete: (FBDialog *)dialog {
+//- ( void ) dialogDidComplete: (FBDialog *)dialog {
 	
-	UNUSED ( dialog );
+//	UNUSED ( dialog );
 	
 	// NOT USED DUE TO A BUG IN FACEBOOK SDK
 	//MOAIFacebookIOS::Get ().DialogDidComplete ();
-}
-- ( void ) dialogDidNotComplete: (FBDialog *)dialog {
+//}
+//- ( void ) dialogDidNotComplete: (FBDialog *)dialog {
 	
-	UNUSED ( dialog );
+//	UNUSED ( dialog );
 	
-	MOAIFacebookIOS::Get ().DialogDidNotComplete ();
-}
+//	MOAIFacebookIOS::Get ().DialogDidNotComplete ();
+//}
 
 @end
 //================================================================//
@@ -698,10 +701,10 @@ void MOAIFacebookIOS::SessionExtended ( cc8* token, cc8* expDate ) {
 #pragma mark Protocol MOAIFacebookIOSRequestDelegate
 //================================================================//
 
-- ( void )request:( FBRequest* )request didLoadRawResponse:( NSData * )response {
+//- ( void )request:( FBRequest* )request didLoadRawResponse:( NSData * )response {
 	
-	MOAIFacebookIOS::Get ().ReceivedRequestResponse ( response );
-}
+//	MOAIFacebookIOS::Get ().ReceivedRequestResponse ( response );
+//}
 
 @end
 

@@ -8,7 +8,7 @@
 #define AKU_ADCOLONY_H
 
 #include <aku/AKU.h>
-#import <AdColonyPublic.h>
+//#import <AdColonyPublic.h>
 
 AKU_API void	AKUAdColonyInit				();
 

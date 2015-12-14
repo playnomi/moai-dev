@@ -19,17 +19,11 @@
 @class MOAIImagePickerIOSTakeoverDelegate;
 
 //================================================================//
-// MOAIAdColonyIOS
-//================================================================//
-/**	@name	MOAIAdColonyIOS
- @text	Wrapper for AdColony integration on iOS devices. 
- Exposed to lua via MOAIAdColony on all mobile platforms.
- 
- @const	VIDEO_BEGAN_IN_ZONE		Event code for video playback started notifications.
- @const	VIDEO_ENDED_IN_ZONE		Event code for video playback ended notifications.
- @const	VIDEO_FAILED_IN_ZONE	Event code for video playback failed notifications.
- @const	VIDEO_PAUSED_IN_ZONE	Event code for video playback paused notifications.
- @const	VIDEO_RESUMED_IN_ZONE	Event code for video playback resumed notifications.
+// MOAIImagePickerIOS
+//===============MOAIImagePickerIOS================================================//
+/**	@name	MOAIImagePickerIOS
+ @text	Wrapper for MOAIImagePickerIOS integration on iOS devices.
+
  */
 class MOAIImagePickerIOS :
 public MOAIGlobalClass < MOAIImagePickerIOS, MOAILuaObject >,
@@ -61,19 +55,5 @@ public:
 	void	RegisterLuaClass			( MOAILuaState& state );
 };
 
-//================================================================//
-// MOAIAdColonyIOSDelegate
-//================================================================//
-//@interface MOAIImagePickerIOSDelegate : NSObject <UIImagePickerControllerDelegate> {
-//@private
-//}
-//@end
 
-//================================================================//
-// MOAIAdColonyIOSTakeoverDelegate
-//================================================================//
-//@interface MOAIImagePickerIOSTakeoverDelegate : NSObject {
-//@private
-//}
-//@end
 #endif

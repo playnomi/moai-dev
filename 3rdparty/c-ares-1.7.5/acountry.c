@@ -56,6 +56,9 @@
 #endif
 
 #include "ares.h"
+#include <arpa/inet.h>
+#include <ares_inet_ntop.h>
+
 #include "ares_getopt.h"
 #include "inet_net_pton.h"
 #include "inet_ntop.h"

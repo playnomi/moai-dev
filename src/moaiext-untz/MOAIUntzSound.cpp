@@ -370,7 +370,8 @@ bool MOAIUntzSound::ApplyAttrOp ( u32 attrID, MOAIAttrOp& attrOp, u32 op ) {
 //----------------------------------------------------------------//
 MOAIUntzSound::MOAIUntzSound () :
 	mSound ( 0 ),
-	mFilename ( NULL ),
+	// S.S. change to char* cast
+	mFilename ( "" ),
 	mInMemory ( false ) {
 
 	RTTI_SINGLE ( MOAINode )
