@@ -65,10 +65,9 @@ int MOAIFacebookIOS::_getToken ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 	
-	//MOAIFacebookIOS::Get ().mToken = [[ MOAIFacebookIOS::Get ().mFacebook accessToken ] UTF8String ];
-	if ( !MOAIFacebookIOS::Get ().mToken.empty ()) {
+	if ( [FBSDKAccessToken currentAccessToken]) {
 		
-		lua_pushstring ( L, MOAIFacebookIOS::Get ().mToken.c_str ());
+		lua_pushstring ( L, [[[FBSDKAccessToken currentAccessToken] tokenString] UTF8String]);
 	} else {
 		
 		lua_pushnil ( L );
@@ -112,24 +111,37 @@ int MOAIFacebookIOS::_init ( lua_State* L ) {
 	if (urlSchemeSuffix != nil) {
 		MOAIFacebookIOS::Get ().mURLSchemeSuffix = [[ NSString alloc ] initWithUTF8String:urlSchemeSuffix];
 	}
-		
+	
+	//[FBSDKAccessToken currentAccessToken]
+	
+	//[[NSNotificationCenter defaultCenter] addObserver:MOAIFacebookIOS::Get ().mFBEventDelegate
+	//										 selector:@selector(_accessTokenChanged:)
+	//											 name:FBSDKAccessTokenDidChangeNotification
+	//										   object:nil];
+	//[[NSNotificationCenter defaultCenter] addObserver:MOAIFacebookIOS::Get ().mFBEventDelegate
+	//										 selector:@selector(_currentProfileChanged:)
+	//											 name:FBSDKProfileDidChangeNotification
+	//										   object:nil];
+	
 	if ( MOAIFacebookIOS::Get ().mURLSchemeSuffix != nil) {
 		
 		NSLog(@"init with URL scheme suffix: %@",MOAIFacebookIOS::Get ().mURLSchemeSuffix);
-        
+		
 	//	MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId:MOAIFacebookIOS::Get ().mAppId
 	//															urlSchemeSuffix:MOAIFacebookIOS::Get ().mURLSchemeSuffix
 	//															andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
-		MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
-        
+		
 	}
 	else {
         
 	//	MOAIFacebookIOS::Get ().mFacebook = [[ Facebook alloc ] initWithAppId: [[ NSString alloc ] initWithUTF8String: appID ] andDelegate: MOAIFacebookIOS::Get ().mFBSessionDelegate ];
 	
-		MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
 	}
 	
+	[FBSDKSettings setAppID:MOAIFacebookIOS::Get ().mAppId];
+	
+	MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
+
 	return 0;
 }
 
@@ -178,6 +190,10 @@ void MOAIFacebookIOS::FB_CreateNewSession(NSArray* permissions) {
 
 	NSLog(@"Create new FB session with appId: %@",MOAIFacebookIOS::Get ().mAppId);
 	
+	[FBSDKAppEvents activateApp];
+	
+	// create a new session on startup?
+	
 	/*
 	// use email as the default for now
 	NSArray *permissions2 = [[NSArray alloc] initWithObjects:
@@ -212,80 +228,42 @@ void MOAIFacebookIOS::FB_CreateNewSession(NSArray* permissions) {
  */
 int MOAIFacebookIOS::_login ( lua_State* L ) {
 	
-	MOAILuaState state ( L );
+	  MOAILuaState state ( L );
 	
-	/*
-	if ( state.IsType ( 1, LUA_TTABLE )) {
+	  NSArray* paramsArray = nil;
+	
+	 if ( state.IsType ( 1, LUA_TTABLE )) {
 		
 		NSMutableDictionary* paramsDict = [[ NSMutableDictionary alloc ] init ];
 		[ paramsDict initWithLua:state stackIndex:1 ];
 		
-		NSArray* paramsArray = [ paramsDict allValues ];
-		
-		if ( ![ MOAIFacebookIOS::Get ().mFacebook isSessionValid ]) {
+		paramsArray = [ paramsDict allValues ];
 			
-			[ MOAIFacebookIOS::Get ().mFacebook authorize:paramsArray ];
-		}
-		
-	} else {
-		
-		if ( ![ MOAIFacebookIOS::Get ().mFacebook isSessionValid ]) {
+	 }
+	
+	FBSDKLoginManager *login = 	MOAIFacebookIOS::Get ().mFBLoginManager;
+	[login
+	 logInWithReadPermissions:paramsArray
+	 fromViewController:nil
+	 handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+		 if (error) {
+			 NSLog(@"Process error");
+		 } else if (result.isCancelled) {
 			
-			[ MOAIFacebookIOS::Get ().mFacebook authorize:nil ];
-		}
-	}
-	 */
+			 NSLog(@"Facebook login failed try again");
+			 MOAIFacebookIOS::Get ().SessionDidNotLogin ();
+			 
+		 } else {
+			 NSLog(@"Login and init old stuff");
 
-	
-	NSArray* permissions = nil;
-	if ( state.IsType ( 1, LUA_TTABLE )) {
-		
-		NSMutableDictionary* paramsDict = [[ NSMutableDictionary alloc ] init ];
-		[ paramsDict initWithLua:state stackIndex:1 ];
-		
-		NSArray* permissions = [ paramsDict allValues ];
-	}
-	
-	NSLog(@"Login new FB session with appId: %@", MOAIFacebookIOS::Get ().mAppId);
-	//NSLog(@"Login new FB session with urlSchemeSuffix: %@", [MOAIFacebookIOS::Get ().mSession urlSchemeSuffix]);
-	
-	//NSArray *permissions = [[NSArray alloc] initWithObjects:
-	//						@"email",
-	//						nil];
-	
-	// Attempt to open the session. If the session is not open, show the user the Facebook login UX
-	/*
-	[[FBSession activeSession] openWithCompletionHandler:^(FBSession *session,
-														  FBSessionState status,
-														  NSError *error)
-	{
-		// Did something go wrong during login? I.e. did the user cancel?
-		if (status == FBSessionStateClosedLoginFailed || status == FBSessionStateCreatedOpening) {
+			 // replace the access token with our new token
+			 MOAIFacebookIOS::Get ().mToken			 = [result token];
+			 MOAIFacebookIOS::Get ().mTokenString    = [[[result token] tokenString] UTF8String];
 
-			
-			NSLog(@"Facebook login failed try again");
-			// If so, just send them round the loop again
-			[[FBSession activeSession] closeAndClearTokenInformation];
-			[FBSession setActiveSession:nil];
-			MOAIFacebookIOS::Get ().FB_CreateNewSession(nil);
-			MOAIFacebookIOS::Get ().SessionDidNotLogin ();
-		}
-		else
-		{
-			NSLog(@"Login and init old stuff");
-			
-			// Required to initialise the old SDK FB object here so we can play with Dialogs
-
-			// Initialise the old SDK with our new credentials
-			MOAIFacebookIOS::Get ().mFacebook.accessToken = [FBSession activeSession].accessToken;
-			MOAIFacebookIOS::Get ().mFacebook.expirationDate = [FBSession activeSession].expirationDate;
-			
-			// Update our game now we've logged in			
-			MOAIFacebookIOS::Get ().SessionDidLogin ();
-			
-		}
+			 MOAIFacebookIOS::Get ().SessionDidLogin ();
+		 }
 	}];
-	*/
+	
 	return 0;
 }
 
@@ -300,13 +278,10 @@ int MOAIFacebookIOS::_logout ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 	
-	// old way of logging out
-	// [ MOAIFacebookIOS::Get ().mFacebook logout ];
-	
-	// new way of logging out
-	//[[FBSession activeSession] closeAndClearTokenInformation];
-	//[FBSession setActiveSession:nil];
-	
+	 NSLog(@"Logout");
+
+	[MOAIFacebookIOS::Get ().mFBLoginManager logOut];
+
 	return 0;
 }
 
@@ -357,6 +332,19 @@ int MOAIFacebookIOS::_postToFeed ( lua_State* L ) {
 	
 	//[ MOAIFacebookIOS::Get ().mFacebook dialog:@"feed" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
 	
+	FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+	
+	if (link != "")
+	{
+		content.contentURL = [NSURL URLWithString:link];
+	}
+	
+	//[FBSDKShareDialog showFromViewController:nil
+	//							 withContent:content
+	//								delegate:nil];
+	
+	
+	
 	return 0;
 }
 
@@ -392,20 +380,34 @@ int MOAIFacebookIOS::_sendRequest ( lua_State* L ) {
      */
     
     NSString* to = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 2, "" ) ];
-    
-	NSMutableDictionary* params = [ NSMutableDictionary dictionaryWithObjectsAndKeys: msg, @"message", nil ];
-    
+	
+	//NSMutableDictionary* params = [ NSMutableDictionary dictionaryWithObjectsAndKeys: msg, @"message", nil ];
+	
+	FBSDKGameRequestContent *gameRequestContent = [[FBSDKGameRequestContent alloc] init];
+	// Look at FBSDKGameRequestContent for futher optional properties
+	gameRequestContent.message = msg;
+
 	NSLog(@"to: %@", to);
-    
-    if (to != "")
+	
+	// this is only going to work for one so far
+	if (to != "")
 	{
 		printf ( "setting to field\n" );
-		[params setObject:to forKey:@"to"];
+		NSMutableArray* toArray = [NSMutableArray arrayWithCapacity:1];
+		toArray[0] = to;
+		
+		gameRequestContent.recipients = toArray;
 	}
 	
+	NSString* title = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 3, "" ) ];
+
+	if (title != "") {
+		gameRequestContent.title = title;
+	}
+		
+	// Assuming self implements <FBSDKGameRequestDialogDelegate>
+	[FBSDKGameRequestDialog showWithContent:gameRequestContent delegate:MOAIFacebookIOS::Get ().mFBRequestDelegate];
 	
-	//[MOAIFacebookIOS::Get ().mFacebook enableFrictionlessRequests];
-	//[ MOAIFacebookIOS::Get ().mFacebook dialog:@"apprequests" andParams:params andDelegate:MOAIFacebookIOS::Get ().mFBDialogDelegate ];
 	
 	return 0;
 }
@@ -422,11 +424,17 @@ int MOAIFacebookIOS::_sessionValid ( lua_State* L ) {
 	
 	MOAILuaState state ( L );
 	
-	// old way of checking for session
-	//lua_pushboolean ( state, [ MOAIFacebookIOS::Get ().mFacebook isSessionValid ]);
-	
 	// new way of checking for session
-	//lua_pushboolean ( state, [[FBSession activeSession] isOpen] );
+	bool loggedIn = false;
+	
+	if ([FBSDKAccessToken currentAccessToken]) {
+		
+		loggedIn = true;
+	}
+	
+	printf ( "MOAIFacebookIOS %i \n", loggedIn );
+	
+	lua_pushboolean ( state,  loggedIn);
 	
 	return 1;
 }
@@ -450,7 +458,6 @@ int MOAIFacebookIOS::_setExpirationDate ( lua_State* L ) {
 	NSDate *date = [ formatter dateFromString:dateString ];
 	
 	MOAIFacebookIOS::Get ().mExpirationDate = expirationDate;
-	//MOAIFacebookIOS::Get ().mFacebook.expirationDate = date;
 	
 	[ dateString release ];
 	[ formatter release ];
@@ -470,9 +477,24 @@ int MOAIFacebookIOS::_setToken ( lua_State* L ) {
 	MOAILuaState state ( L );
 	
 	cc8* token = state.GetValue < cc8* >( 1, "" );
+	NSString* tokenString = [[ NSString alloc ] initWithUTF8String:token ];
+
+	MOAIFacebookIOS::Get ().mTokenString = token;
 	
-	MOAIFacebookIOS::Get ().mToken = token;
-	//MOAIFacebookIOS::Get ().mFacebook.accessToken = [[ NSString alloc ] initWithUTF8String:token ];
+	NSString* userId = [[ NSString alloc ] initWithUTF8String:state.GetValue < cc8* >( 2, "" ) ];
+	
+	NSMutableArray* permissions = [NSMutableArray arrayWithCapacity:3];
+	permissions[0] = @"email";
+	permissions[1] = @"public_profile";
+	permissions[2] = @"user_friends";
+	
+	[[FBSDKAccessToken alloc] initWithTokenString:tokenString
+							 permissions:permissions
+							 declinedPermissions:nil
+                             appID:MOAIFacebookIOS::Get ().mAppId
+                             userID:userId
+							 expirationDate:nil
+							 refreshDate:nil];
 	
 	return 0;
 }
@@ -495,7 +517,10 @@ MOAIFacebookIOS::MOAIFacebookIOS () {
 	
 	//mFBSessionDelegate = [[ MOAIFacebookIOSSessionDelegate alloc ] init];
 	//mFBDialogDelegate = [[ MOAIFacebookIOSDialogDelegate alloc ] init ];
-	//mFBRequestDelegate = [[ MOAIFacebookIOSRequestDelegate alloc ] init ];
+	mFBRequestDelegate = [[ MOAIFacebookIOSRequestDelegate alloc ] init ];
+	mFBEventDelegate = [[ MOAIFacebookIOSEventDelegate alloc] init];
+	
+	mFBLoginManager = [[FBSDKLoginManager alloc] init];
 }
 
 //----------------------------------------------------------------//
@@ -503,7 +528,7 @@ MOAIFacebookIOS::~MOAIFacebookIOS () {
     
 	//[ mFBSessionDelegate release ];
 	//[ mFBDialogDelegate release ];
-	//[ mFBRequestDelegate release ];
+	[ mFBRequestDelegate release ];
 }
 
 //----------------------------------------------------------------//
@@ -706,5 +731,71 @@ void MOAIFacebookIOS::SessionExtended ( cc8* token, cc8* expDate ) {
 //	MOAIFacebookIOS::Get ().ReceivedRequestResponse ( response );
 //}
 
+- (void) gameRequestDialog:	(FBSDKGameRequestDialog *)gameRequestDialog didCompleteWithResults:(NSDictionary *)results {
+	
+	MOAIFacebookIOS::Get ().DialogDidComplete ();
+}
+
+
+- (void) gameRequestDialog:	(FBSDKGameRequestDialog *)gameRequestDialog didFailWithError:	(NSError *)error {
+	
+	MOAIFacebookIOS::Get ().DialogDidNotComplete ();
+}
+
+- (void) gameRequestDialogDidCancel:(FBSDKGameRequestDialog *)gameRequestDialog {
+	
+	MOAIFacebookIOS::Get ().DialogDidNotComplete ();
+}
+
 @end
 
+//================================================================//
+// MOAIFacebookIOSRequestDelegate
+//================================================================//
+@implementation MOAIFacebookIOSEventDelegate
+
+//================================================================//
+#pragma mark -
+#pragma mark Protocol MOAIFacebookIOSRequestDelegate
+//================================================================//
+
+
+// Observe a new token, so save it to our SUCache and update
+// the cell.
+- (void)_accessTokenChanged:(NSNotification *)notification
+{
+	//FBSDKAccessToken *token = notification.userInfo[FBSDKAccessTokenChangeNewKey];
+	
+	
+	//if (!token) {
+		//[self _deselectRow];
+	//} else {
+	//	SUProfileTableViewCell *cell = (SUProfileTableViewCell *)[self.tableView cellForRowAtIndexPath:_currentIndexPath];
+	//	cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	//	NSInteger slot = [self _userSlotFromIndexPath:_currentIndexPath];
+	//	SUCacheItem *item = [SUCache itemForSlot:slot] ?: [[SUCacheItem alloc] init];
+	//	if (![item.token isEqualToAccessToken:token]) {
+	//		item.token = token;
+	//		[SUCache saveItem:item slot:slot];
+	//		cell.userID = token.userID;
+	//	}
+	//}
+}
+
+// The profile information has changed, update the cell and cache.
+- (void)_currentProfileChanged:(NSNotification *)notification
+{
+	//NSInteger slot = [self _userSlotFromIndexPath:_currentIndexPath];
+	
+	//FBSDKProfile *profile = notification.userInfo[FBSDKProfileChangeNewKey];
+	//if (profile) {
+	//	SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
+	//	cacheItem.profile = profile;
+	//	[SUCache saveItem:cacheItem slot:slot];
+		
+	//	SUProfileTableViewCell *cell = (SUProfileTableViewCell *)[self.tableView cellForRowAtIndexPath:_currentIndexPath];
+	//	cell.userName = cacheItem.profile.name;
+	//}
+}
+
+@end

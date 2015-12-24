@@ -714,6 +714,7 @@
 		03240EF413564CB0000ADC60 /* tinyxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 03240BA813564CB0000ADC60 /* tinyxml.h */; };
 		03240EF513564CB0000ADC60 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03240BA913564CB0000ADC60 /* tinyxmlerror.cpp */; };
 		03240EF613564CB0000ADC60 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03240BAA13564CB0000ADC60 /* tinyxmlparser.cpp */; };
+		0324B9751C2781F600A81DED /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0324B9741C2781F600A81DED /* FBSDKShareKit.framework */; };
 		0324E69413564BC8000ADC60 /* AKU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0324E4F313564BC7000ADC60 /* AKU.cpp */; };
 		0324E69513564BC8000ADC60 /* AKU.h in Headers */ = {isa = PBXBuildFile; fileRef = 0324E4F413564BC7000ADC60 /* AKU.h */; };
 		0324E69813564BC8000ADC60 /* pch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0324E4F713564BC7000ADC60 /* pch.cpp */; };
@@ -1132,7 +1133,7 @@
 		03B2EC1613C503B400F8B3CF /* MOAIMotionSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03B2EC1213C503B400F8B3CF /* MOAIMotionSensor.cpp */; };
 		03B2EC1713C503B400F8B3CF /* MOAIMotionSensor.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B2EC1313C503B400F8B3CF /* MOAIMotionSensor.h */; };
 		03C2EFBB1BDAD1800000BA30 /* AdColony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 031711CA1989D9E9000BA658 /* AdColony.framework */; };
-		03C2EFC21BDAFC890000BA30 /* AKU-adcolony.mm in Sources */ = {isa = PBXBuildFile; fileRef = E98DBDD21537A33100514387 /* AKU-adcolony.mm */; settings = {ASSET_TAGS = (); }; };
+		03C2EFC21BDAFC890000BA30 /* AKU-adcolony.mm in Sources */ = {isa = PBXBuildFile; fileRef = E98DBDD21537A33100514387 /* AKU-adcolony.mm */; };
 		03C6EFA716D328E400736AB5 /* Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C6EF8816D328E400736AB5 /* Facebook.h */; };
 		03C6EFA816D328E400736AB5 /* FacebookSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C6EF8916D328E400736AB5 /* FacebookSDK.h */; };
 		03C6EFA916D328E400736AB5 /* FBCacheDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 03C6EF8A16D328E400736AB5 /* FBCacheDescriptor.h */; };
@@ -1177,10 +1178,10 @@
 		03DABB89166EDFF100EAE827 /* MobclixFullScreenAdViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 03DABB81166EDFF100EAE827 /* MobclixFullScreenAdViewController.h */; };
 		03E4E94113664F7C008D079B /* MOAIParticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E4E94013664F7C008D079B /* MOAIParticle.h */; };
 		03E4E94213664F7C008D079B /* MOAIParticle.h in Headers */ = {isa = PBXBuildFile; fileRef = 03E4E94013664F7C008D079B /* MOAIParticle.h */; };
-		03F2E88C1C1E051E008773D7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88A1C1E051E008773D7 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		03F2E88D1C1E051E008773D7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88B1C1E051E008773D7 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		03F2E88E1C1E0E76008773D7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88A1C1E051E008773D7 /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		03F2E88F1C1E0E78008773D7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88B1C1E051E008773D7 /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
+		03F2E88C1C1E051E008773D7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88A1C1E051E008773D7 /* FBSDKCoreKit.framework */; };
+		03F2E88D1C1E051E008773D7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88B1C1E051E008773D7 /* FBSDKLoginKit.framework */; };
+		03F2E88E1C1E0E76008773D7 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88A1C1E051E008773D7 /* FBSDKCoreKit.framework */; };
+		03F2E88F1C1E0E78008773D7 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03F2E88B1C1E051E008773D7 /* FBSDKLoginKit.framework */; };
 		075110E9149AD7C3006C0B61 /* MOAIGridPathGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075110E1149AD7C3006C0B61 /* MOAIGridPathGraph.cpp */; };
 		075110EA149AD7C3006C0B61 /* MOAIGridPathGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075110E1149AD7C3006C0B61 /* MOAIGridPathGraph.cpp */; };
 		075110EB149AD7C3006C0B61 /* MOAIGridPathGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 075110E2149AD7C3006C0B61 /* MOAIGridPathGraph.h */; };
@@ -3913,6 +3914,7 @@
 		03240BA913564CB0000ADC60 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxmlerror.cpp; path = ../../3rdparty/tinyxml/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		03240BAA13564CB0000ADC60 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tinyxmlparser.cpp; path = ../../3rdparty/tinyxml/tinyxmlparser.cpp; sourceTree = SOURCE_ROOT; };
 		03240FE8135656D7000ADC60 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		0324B9741C2781F600A81DED /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../3rdparty/FacebookSDKs-iOS-20151111/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		0324E2AF1356485F000ADC60 /* libmoai-osx-3rdparty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-osx-3rdparty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0324E2BB1356485F000ADC60 /* libmoai-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmoai-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0324E4F313564BC7000ADC60 /* AKU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AKU.cpp; sourceTree = "<group>"; };
@@ -6043,6 +6045,7 @@
 			files = (
 				03F2E88D1C1E051E008773D7 /* FBSDKLoginKit.framework in Frameworks */,
 				03F2E88C1C1E051E008773D7 /* FBSDKCoreKit.framework in Frameworks */,
+				0324B9751C2781F600A81DED /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8356,6 +8359,7 @@
 		CD2FDE8613542E9F00B814DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0324B9741C2781F600A81DED /* FBSDKShareKit.framework */,
 				03F2E88A1C1E051E008773D7 /* FBSDKCoreKit.framework */,
 				03F2E88B1C1E051E008773D7 /* FBSDKLoginKit.framework */,
 				031A2B8119BA327400E96064 /* Chartboost.framework */,
@@ -14683,6 +14687,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios-3rdparty";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -14933,9 +14938,10 @@
 					"\"../../3rdparty/TapjoySDK_iOS_v11.2.2/Libraries/Tapjoy.embeddedframework\"",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "i386 armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -15007,7 +15013,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "moai-ios";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "i386 armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -15571,6 +15577,7 @@
 					"\"../../3rdparty/chartboostiOS-2.9.1\"",
 					"\"../../3rdparty/FacebookSDKs-iOS-20151111/FBSDKCoreKit.framework/Headers\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios-facebook";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -16113,6 +16120,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "moai-ios-zlcore";
 				SDKROOT = iphoneos;
@@ -16190,6 +16198,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios-untz";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -16470,6 +16479,7 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios-luaext";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -17229,7 +17239,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "moai-ios";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "i386 armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Distribution;
 		};
@@ -17609,6 +17619,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../3rdparty/Chartboost\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "moai-ios-chartboost";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -17920,7 +17931,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "moai-ios";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "i386 armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = AdHoc;
 		};

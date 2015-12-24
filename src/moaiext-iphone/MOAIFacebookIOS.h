@@ -14,10 +14,14 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKGameRequestDialog.h>
+#import <FBSDKShareKit/FBSDKShareLinkContent.h>
 
-@class MOAIFacebookIOSDialogDelegate;
+//@class MOAIFacebookIOSDialogDelegate;
 @class MOAIFacebookIOSRequestDelegate;
-@class MOAIFacebookIOSSessionDelegate;
+//@class MOAIFacebookIOSSessionDelegate;
+
+@class MOAIFacebookIOSEventDelegate;
 
 //================================================================//
 // MOAIFacebookIOS
@@ -62,11 +66,18 @@ public:
 		
 	STLString						mExpirationDate;
 	//Facebook*						mFacebook;
-	//FBSession*						mSession;
-	STLString						mToken;
+	//FBSession*					mSession;
+	STLString						mTokenString;
+	FBSDKAccessToken*				mToken;
 	NSString*						mURLSchemeSuffix;
+		
+	MOAIFacebookIOSEventDelegate*   mFBEventDelegate;
+		
+	FBSDKLoginManager*				mFBLoginManager;
+	
+		
 	//MOAIFacebookIOSDialogDelegate*	mFBDialogDelegate;
-	//MOAIFacebookIOSRequestDelegate*	mFBRequestDelegate;
+	MOAIFacebookIOSRequestDelegate*	mFBRequestDelegate;
 	//MOAIFacebookIOSSessionDelegate* mFBSessionDelegate;
 		
 	enum {
@@ -94,6 +105,16 @@ public:
 };
 
 //================================================================//
+// MOAIFacebookEventDelegate
+//================================================================//
+@interface MOAIFacebookIOSEventDelegate : NSObject {
+@private
+}
+@end
+
+
+
+//================================================================//
 // MOAIFacebookIOSDialogDelegate
 //================================================================//
 //@interface MOAIFacebookIOSDialogDelegate : NSObject < FBDialogDelegate > {
@@ -104,10 +125,10 @@ public:
 //================================================================//
 // MOAIFacebookIOSRequestDelegate
 //================================================================//
-//@interface MOAIFacebookIOSRequestDelegate : NSObject < FBRequestDelegate > {
-//@private
-//}
-//@end
+@interface MOAIFacebookIOSRequestDelegate : NSObject < FBSDKGameRequestDialogDelegate > {
+@private
+}
+@end
 
 //================================================================//
 // MOAIFacebookIOSSessionDelegate

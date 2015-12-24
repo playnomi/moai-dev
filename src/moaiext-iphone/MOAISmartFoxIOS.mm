@@ -768,7 +768,7 @@ void MOAISmartFoxIOS::RoomJoin(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", ( longun a )room.id);
+		state.SetField ( -1, "id", ( u32 )room.id);
 				
 		NSLog(@"about to count players %i", [room userCount]);
 		
@@ -785,11 +785,11 @@ void MOAISmartFoxIOS::RoomJoin(SFSEvent *evt)
 			//state.SetField ( -1, "id", [ player  ]);
             
             if ( [room isGame] ){
-                state.SetField ( -1, "playerId", player.playerId);
+                state.SetField ( -1, "playerId", ( u32 )player.playerId);
             }
                 
 			state.SetField ( -1, "name", [ player.name UTF8String ]);
-			state.SetField ( -1, "id",  player.id  );
+			state.SetField ( -1, "id",  ( u32 )player.id  );
 			state.SetField ( -1, "isItMe", player.isItMe);
 			state.SetField ( -1, "isSpectator", player.isSpectator);
 			
@@ -817,7 +817,7 @@ void MOAISmartFoxIOS::RoomJoin(SFSEvent *evt)
                 
                 if (variable.type == @"Int"){
                     
-                    state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                    state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
                 }
                 
                 if (variable.type == @"Bool"){
@@ -870,7 +870,7 @@ void MOAISmartFoxIOS::RoomJoin(SFSEvent *evt)
             
             if (variable.type == @"Int"){
                 
-                state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
             }
             
             if (variable.type == @"Bool"){
@@ -924,7 +924,7 @@ void MOAISmartFoxIOS::UserEnterRoom(SFSEvent *evt)
 				
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", room.id);
+		state.SetField ( -1, "id", ( u32 )room.id);
 		
 		// end user variables table
         lua_settable ( state, -3 );
@@ -940,12 +940,12 @@ void MOAISmartFoxIOS::UserEnterRoom(SFSEvent *evt)
 		// interate through the player list
 		
 		if ( [room isGame] ){
-			state.SetField ( -1, "playerId", user.playerId);
+			state.SetField ( -1, "playerId", ( u32 )user.playerId);
             NSLog(@"playerid: %i", user.playerId);
 		}
 		
 		state.SetField ( -1, "name", [ user.name UTF8String ]);
-		state.SetField ( -1, "id",  user.id  );
+		state.SetField ( -1, "id",  ( u32 )user.id  );
 		
 		NSLog(@"id: %i isitme: %i", user.id, user.isItMe);
 		
@@ -978,7 +978,7 @@ void MOAISmartFoxIOS::UserEnterRoom(SFSEvent *evt)
             
             if (variable.type == @"Int"){
                 
-                state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                state.SetField ( -1, [variable.name UTF8String ], ( int32 )[variable getIntValue]);
             }
             
             if (variable.type == @"Bool"){
@@ -1026,7 +1026,7 @@ void MOAISmartFoxIOS::UserExitRoom(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", room.id);
+		state.SetField ( -1, "id", ( u32 )room.id);
 		
 		// end user variables table
         lua_settable ( state, -3 );
@@ -1038,13 +1038,13 @@ void MOAISmartFoxIOS::UserExitRoom(SFSEvent *evt)
 
 		
 		if ( [room isGame] ){
-			state.SetField ( -1, "playerId", user.playerId);
+			state.SetField ( -1, "playerId", ( u32 )user.playerId);
             NSLog(@"playerid: %i", user.playerId);
         }
     
 		// interate through the player list
 		state.SetField ( -1, "name", [ user.name UTF8String ]);
-		state.SetField ( -1, "id",  user.id  );
+		state.SetField ( -1, "id",  ( u32 )user.id  );
 		
 		
 		NSLog(@"id: %i isitme: %i", user.id, user.isItMe);
@@ -1081,7 +1081,7 @@ void MOAISmartFoxIOS::UserExitRoom(SFSEvent *evt)
             
             if (variable.type == @"Int"){
                 
-                state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                state.SetField ( -1, [variable.name UTF8String ], ( int32 )[variable getIntValue]);
             }
             
             if (variable.type == @"Bool"){
@@ -1329,7 +1329,7 @@ void MOAISmartFoxIOS::BuddyListInit(SFSEvent *evt)
 				
 				if (variable.type == @"Int"){
 					
-					state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+					state.SetField ( -1, [variable.name UTF8String ], ( int32 )[variable getIntValue]);
 				}
 				
 				if (variable.type == @"Bool"){
@@ -1432,7 +1432,7 @@ void MOAISmartFoxIOS::SpectatorToPlayer(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", (long)room.id);
+		state.SetField ( -1, "id", (u32)room.id);
 		
 		NSLog(@"about to count players %i", [room userCount]);
 		
@@ -1449,11 +1449,11 @@ void MOAISmartFoxIOS::SpectatorToPlayer(SFSEvent *evt)
 			//state.SetField ( -1, "id", [ player  ]);
             
             if ( [room isGame] ){
-                state.SetField ( -1, "playerId", player.playerId);
+                state.SetField ( -1, "playerId", (u32)player.playerId);
             }
 			
 			state.SetField ( -1, "name", [ player.name UTF8String ]);
-			state.SetField ( -1, "id",  player.id  );
+			state.SetField ( -1, "id",  (u32)player.id  );
 			state.SetField ( -1, "isItMe", player.isItMe);
 			state.SetField ( -1, "isSpectator", player.isSpectator);
 			
@@ -1481,7 +1481,7 @@ void MOAISmartFoxIOS::SpectatorToPlayer(SFSEvent *evt)
                 
                 if (variable.type == @"Int"){
                     
-                    state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                    state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
                 }
                 
                 if (variable.type == @"Bool"){
@@ -1534,7 +1534,7 @@ void MOAISmartFoxIOS::SpectatorToPlayer(SFSEvent *evt)
             
             if (variable.type == @"Int"){
                 
-                state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
             }
             
             if (variable.type == @"Bool"){
@@ -1593,7 +1593,7 @@ void MOAISmartFoxIOS::PlayerToSpectator(SFSEvent *evt)
 		
 		state.SetField ( -1, "name", [ room.name UTF8String ]);
 		state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-		state.SetField ( -1, "id", room.id);
+		state.SetField ( -1, "id", (u32)room.id);
 		
 		NSLog(@"about to count players %i", [room userCount]);
 		
@@ -1610,11 +1610,11 @@ void MOAISmartFoxIOS::PlayerToSpectator(SFSEvent *evt)
 			//state.SetField ( -1, "id", [ player  ]);
             
             if ( [room isGame] ){
-                state.SetField ( -1, "playerId", player.playerId);
+                state.SetField ( -1, "playerId", (u32)player.playerId);
             }
 			
 			state.SetField ( -1, "name", [ player.name UTF8String ]);
-			state.SetField ( -1, "id",  player.id  );
+			state.SetField ( -1, "id",  (u32)player.id  );
 			state.SetField ( -1, "isItMe", player.isItMe);
 			state.SetField ( -1, "isSpectator", player.isSpectator);
 			
@@ -1642,7 +1642,7 @@ void MOAISmartFoxIOS::PlayerToSpectator(SFSEvent *evt)
                 
                 if (variable.type == @"Int"){
                     
-                    state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                    state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
                 }
                 
                 if (variable.type == @"Bool"){
@@ -1695,7 +1695,7 @@ void MOAISmartFoxIOS::PlayerToSpectator(SFSEvent *evt)
             
             if (variable.type == @"Int"){
                 
-                state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
             }
             
             if (variable.type == @"Bool"){
@@ -1796,7 +1796,7 @@ void MOAISmartFoxIOS::RoomFindResult(SFSEvent *evt)
             
             state.SetField ( -1, "name", [ room.name UTF8String ]);
             state.SetField ( -1, "groupId", [ room.groupId	UTF8String ]);
-            state.SetField ( -1, "id", room.id);
+            state.SetField ( -1, "id", (u32)room.id);
             
             NSLog(@"about to count players %i", [room userCount]);
             
@@ -1813,11 +1813,11 @@ void MOAISmartFoxIOS::RoomFindResult(SFSEvent *evt)
                 //state.SetField ( -1, "id", [ player  ]);
                 
                 if ( [room isGame] ){
-                    state.SetField ( -1, "playerId", player.playerId);
+                    state.SetField ( -1, "playerId", (u32)player.playerId);
                 }
                 
                 state.SetField ( -1, "name", [ player.name UTF8String ]);
-                state.SetField ( -1, "id",  player.id  );
+                state.SetField ( -1, "id",  (u32)player.id  );
                 state.SetField ( -1, "isItMe", player.isItMe);
                 state.SetField ( -1, "isSpectator", player.isSpectator);
                 
@@ -1845,7 +1845,7 @@ void MOAISmartFoxIOS::RoomFindResult(SFSEvent *evt)
                     
                     if (variable.type == @"Int"){
                         
-                        state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                        state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
                     }
                     
                     if (variable.type == @"Bool"){
@@ -1899,7 +1899,7 @@ void MOAISmartFoxIOS::RoomFindResult(SFSEvent *evt)
                 
                 if (variable.type == @"Int"){
                     
-                    state.SetField ( -1, [variable.name UTF8String ], [variable getIntValue]);
+                    state.SetField ( -1, [variable.name UTF8String ], (int32)[variable getIntValue]);
                 }
                 
                 if (variable.type == @"Bool"){
